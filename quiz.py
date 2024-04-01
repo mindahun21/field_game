@@ -31,7 +31,6 @@ QUESTIONS = [
     Question('Which planet is known as the Red Planet?', ["Mars", "Jupiter", "Venus"], 0),
 ]
 
-QUIZE_COUNT = len(QUESTIONS)
 ENTER_QUESTION, ENTER_OPTIONS, ENTER_ANSWER = range(3)
 
 
@@ -47,7 +46,7 @@ def quiz_summary()->str:
     wrong_answers = 0
     answered_questions = len(user_answers)
 
-    for i in range(QUIZE_COUNT):
+    for i in range(len(QUESTIONS)):
         if i+1 <= answered_questions and user_answers[i] == QUESTIONS[i].ans:
             correct_answers +=1
         else:
@@ -93,7 +92,7 @@ async def receive_quiz_answer(update: Update, context: CallbackContext) -> None:
 
     chat_id = update.poll_answer.user.id
 
-    if len(user_answers) < QUIZE_COUNT:
+    if len(user_answers) < len(QUESTIONS):
         question_number = len(user_answers) + 1
         question = QUESTIONS[question_number-1] 
 
@@ -113,20 +112,23 @@ async def receive_quiz_answer(update: Update, context: CallbackContext) -> None:
         )
 
 async def add_question(update: Update, context: CallbackContext):
+    print("Add Question")
     query = update.callback_query
     if query.data == "add_question":
         await update.effective_message.reply_text("Let's add a new question.\n\nEnter the question:")
-    return ENTER_QUESTION
+    return "ENTER_QUESTION"
 
 async def add_question_input(update: Update, context: CallbackContext):
+    print("question input")
     context.user_data['question'] = update.message.text
-    update.message.reply_text("Enter the options (comma-separated):")
-    return ENTER_OPTIONS
+    await update.message.reply_text("Enter the options (comma-separated):")
+    return "ENTER_OPTIONS"
 
 async def add_options_input(update: Update, context: CallbackContext):
+    print("option input")
     context.user_data['options'] = update.message.text.split(",")
-    update.message.reply_text("Enter the index of the correct answer:")
-    return ENTER_ANSWER
+    await update.message.reply_text("Enter the index of the correct answer:")
+    return "ENTER_ANSWER"
 
 async def add_answer_input(update: Update, context: CallbackContext):
     context.user_data['ans'] = int(update.message.text)
@@ -138,7 +140,7 @@ async def add_answer_input(update: Update, context: CallbackContext):
     )
     QUESTIONS.append(question)
 
-    update.message.reply_text("Question added successfully!")
+    await update.message.reply_text("Question added successfully!")
 
     return ConversationHandler.END
 
@@ -147,17 +149,9 @@ async def cancel_add_question(update: Update, context: CallbackContext):
     await update.message.reply_text("Question addition cancelled.")
     return ConversationHandler.END
 
-add_question_handler = ConversationHandler(
-    entry_points=[CommandHandler("add_question", add_question)],
-    states={
-        ENTER_QUESTION: [MessageHandler(filters.Text, add_question_input)],
-        ENTER_OPTIONS: [MessageHandler(filters.Text, add_options_input)],
-        ENTER_ANSWER: [MessageHandler(filters.Text, add_answer_input)],
-    },
-    fallbacks=[CommandHandler("cancel", cancel_add_question)],
-)
 
 async def manage_quiz(update: Update, context: CallbackContext):
+    print("Managing")
     keyboard = [[InlineKeyboardButton("Add Question", callback_data="add_question")]]
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.message.reply_text("Click the 'Add Question' button to add a new question:", reply_markup=reply_markup)
@@ -170,6 +164,17 @@ def main() -> None:
     application.add_handler(CommandHandler("stop",start))
     application.add_handler(CommandHandler("manage_quiz",manage_quiz))
     application.add_handler(PollAnswerHandler(receive_quiz_answer))
+    # application.add_handler(CallbackQueryHandler(add_question, pattern="add_question"))
+
+    add_question_handler = ConversationHandler(
+    entry_points=[CallbackQueryHandler(add_question)],
+    states={
+        "ENTER_QUESTION": [MessageHandler(filters.TEXT, add_question_input)],
+        "ENTER_OPTIONS": [MessageHandler(filters.TEXT, add_options_input)],
+        "ENTER_ANSWER": [MessageHandler(filters.TEXT, add_answer_input)],
+    },
+    fallbacks=[CommandHandler("cancel", cancel_add_question)],
+    )
 
     application.add_handler(add_question_handler)
 
