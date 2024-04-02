@@ -164,7 +164,6 @@ def main() -> None:
     application.add_handler(CommandHandler("stop",start))
     application.add_handler(CommandHandler("manage_quiz",manage_quiz))
     application.add_handler(PollAnswerHandler(receive_quiz_answer))
-    # application.add_handler(CallbackQueryHandler(add_question, pattern="add_question"))
 
     add_question_handler = ConversationHandler(
     entry_points=[CallbackQueryHandler(add_question)],
