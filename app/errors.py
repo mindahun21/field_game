@@ -4,7 +4,7 @@ from telegram.ext import ContextTypes
 from telegram.error import Forbidden
 
 from .db import session_scope
-from .db_utils import get_entry
+from .db_utils import get_entries
 from .models import User
 
 
@@ -23,7 +23,7 @@ async def error_handler(update:Update,context: ContextTypes.DEFAULT_TYPE):
     )
 
     with session_scope() as db:
-        admins = await get_entry(User,db=db,role="admin")
+        admins = await get_entries(User,db=db,role="admin")
 
         if not admins:
             return

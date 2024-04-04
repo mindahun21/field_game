@@ -1,80 +1,384 @@
-2024-04-04 22:47:36,959 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
-2024-04-04 22:47:36,959 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("users")
-2024-04-04 22:47:36,959 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 22:47:36,960 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("quizzes")
-2024-04-04 22:47:36,960 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 22:47:36,960 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("questions")
-2024-04-04 22:47:36,960 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 22:47:36,960 - sqlalchemy.engine.Engine - INFO - COMMIT
-2024-04-04 22:54:50,123 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
-2024-04-04 22:54:50,123 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("users")
-2024-04-04 22:54:50,123 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 22:54:50,124 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("quizzes")
-2024-04-04 22:54:50,124 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 22:54:50,124 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("questions")
-2024-04-04 22:54:50,124 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 22:54:50,124 - sqlalchemy.engine.Engine - INFO - COMMIT
-2024-04-04 22:58:05,782 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
-2024-04-04 22:58:05,782 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("users")
-2024-04-04 22:58:05,782 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 22:58:05,782 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("quizzes")
-2024-04-04 22:58:05,782 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 22:58:05,783 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("questions")
-2024-04-04 22:58:05,783 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 22:58:05,783 - sqlalchemy.engine.Engine - INFO - COMMIT
-2024-04-04 22:58:53,724 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
-2024-04-04 22:58:53,724 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("users")
-2024-04-04 22:58:53,724 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 22:58:53,725 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("quizzes")
-2024-04-04 22:58:53,725 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 22:58:53,725 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("questions")
-2024-04-04 22:58:53,725 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 22:58:53,725 - sqlalchemy.engine.Engine - INFO - COMMIT
-2024-04-04 23:09:13,576 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
-2024-04-04 23:09:13,576 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("users")
-2024-04-04 23:09:13,576 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 23:09:13,577 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("quizzes")
-2024-04-04 23:09:13,577 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 23:09:13,577 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("questions")
-2024-04-04 23:09:13,577 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 23:09:13,578 - sqlalchemy.engine.Engine - INFO - COMMIT
-2024-04-04 23:12:12,092 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
-2024-04-04 23:12:12,092 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("users")
-2024-04-04 23:12:12,092 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 23:12:12,092 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("quizzes")
-2024-04-04 23:12:12,092 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 23:12:12,093 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("questions")
-2024-04-04 23:12:12,093 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 23:12:12,093 - sqlalchemy.engine.Engine - INFO - COMMIT
-2024-04-04 23:15:55,423 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
-2024-04-04 23:15:55,424 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("users")
-2024-04-04 23:15:55,424 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 23:15:55,424 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("quizzes")
-2024-04-04 23:15:55,424 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 23:15:55,424 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("questions")
-2024-04-04 23:15:55,425 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 23:15:55,425 - sqlalchemy.engine.Engine - INFO - COMMIT
-2024-04-04 23:24:51,657 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
-2024-04-04 23:24:51,657 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("users")
-2024-04-04 23:24:51,657 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 23:24:51,657 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("quizzes")
-2024-04-04 23:24:51,658 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 23:24:51,658 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("questions")
-2024-04-04 23:24:51,658 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 23:24:51,658 - sqlalchemy.engine.Engine - INFO - COMMIT
-2024-04-04 23:25:25,322 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
-2024-04-04 23:25:25,322 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("users")
-2024-04-04 23:25:25,322 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 23:25:25,323 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("quizzes")
-2024-04-04 23:25:25,323 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 23:25:25,323 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("questions")
-2024-04-04 23:25:25,323 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 23:25:25,324 - sqlalchemy.engine.Engine - INFO - COMMIT
-2024-04-04 23:31:21,552 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
-2024-04-04 23:31:21,553 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("users")
-2024-04-04 23:31:21,554 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 23:31:21,555 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("quizzes")
-2024-04-04 23:31:21,555 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 23:31:21,555 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("questions")
-2024-04-04 23:31:21,555 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
-2024-04-04 23:31:21,556 - sqlalchemy.engine.Engine - INFO - COMMIT
+2024-04-05 00:03:22,849 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2024-04-05 00:03:22,850 - sqlalchemy.engine.Engine - INFO - SELECT users.id, users.username, users.chat_id, users.role 
+FROM users 
+WHERE users.chat_id = ?
+2024-04-05 00:03:22,850 - sqlalchemy.engine.Engine - INFO - [cached since 139.7s ago] (1741159258,)
+2024-04-05 00:03:23,934 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2024-04-05 00:03:31,187 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2024-04-05 00:03:31,187 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("users")
+2024-04-05 00:03:31,187 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2024-04-05 00:03:31,187 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("quizzes")
+2024-04-05 00:03:31,188 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2024-04-05 00:03:31,188 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("questions")
+2024-04-05 00:03:31,188 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2024-04-05 00:03:31,188 - sqlalchemy.engine.Engine - INFO - COMMIT
+2024-04-05 00:03:36,511 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2024-04-05 00:03:36,515 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) _post_configure_properties() started
+2024-04-05 00:03:36,515 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) initialize prop id
+2024-04-05 00:03:36,516 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) initialize prop username
+2024-04-05 00:03:36,517 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) initialize prop chat_id
+2024-04-05 00:03:36,521 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) initialize prop role
+2024-04-05 00:03:36,521 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) _post_configure_properties() complete
+2024-04-05 00:03:36,522 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) _post_configure_properties() started
+2024-04-05 00:03:36,522 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) initialize prop questions
+2024-04-05 00:03:36,524 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions setup primary join quizzes.id = questions.quiz_id
+2024-04-05 00:03:36,525 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions setup secondary join None
+2024-04-05 00:03:36,525 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions synchronize pairs [(quizzes.id => questions.quiz_id)]
+2024-04-05 00:03:36,525 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions secondary synchronize pairs []
+2024-04-05 00:03:36,525 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions local/remote pairs [(quizzes.id / questions.quiz_id)]
+2024-04-05 00:03:36,525 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions remote columns [questions.quiz_id]
+2024-04-05 00:03:36,525 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions local columns [quizzes.id]
+2024-04-05 00:03:36,525 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions relationship direction RelationshipDirection.ONETOMANY
+2024-04-05 00:03:36,526 - sqlalchemy.orm.strategies.LazyLoader - INFO - Quiz.questions lazy loading clause :param_1 = questions.quiz_id
+2024-04-05 00:03:36,527 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) initialize prop id
+2024-04-05 00:03:36,527 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) initialize prop subject
+2024-04-05 00:03:36,528 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) _post_configure_properties() complete
+2024-04-05 00:03:36,528 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) _post_configure_properties() started
+2024-04-05 00:03:36,528 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop quiz
+2024-04-05 00:03:36,529 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz setup primary join quizzes.id = questions.quiz_id
+2024-04-05 00:03:36,529 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz setup secondary join None
+2024-04-05 00:03:36,529 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz synchronize pairs [(quizzes.id => questions.quiz_id)]
+2024-04-05 00:03:36,530 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz secondary synchronize pairs []
+2024-04-05 00:03:36,530 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz local/remote pairs [(questions.quiz_id / quizzes.id)]
+2024-04-05 00:03:36,530 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz remote columns [quizzes.id]
+2024-04-05 00:03:36,530 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz local columns [questions.quiz_id]
+2024-04-05 00:03:36,530 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz relationship direction RelationshipDirection.MANYTOONE
+2024-04-05 00:03:36,530 - sqlalchemy.orm.strategies.LazyLoader - INFO - Question.quiz lazy loading clause quizzes.id = :param_1
+2024-04-05 00:03:36,531 - sqlalchemy.orm.strategies.LazyLoader - INFO - Question.quiz will use Session.get() to optimize instance loads
+2024-04-05 00:03:36,532 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop id
+2024-04-05 00:03:36,532 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop question
+2024-04-05 00:03:36,532 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop options
+2024-04-05 00:03:36,533 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop ans_index
+2024-04-05 00:03:36,533 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop quiz_id
+2024-04-05 00:03:36,534 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) _post_configure_properties() complete
+2024-04-05 00:03:36,535 - sqlalchemy.engine.Engine - INFO - SELECT users.id, users.username, users.chat_id, users.role 
+FROM users 
+WHERE users.chat_id = ?
+2024-04-05 00:03:36,536 - sqlalchemy.engine.Engine - INFO - [generated in 0.00028s] (1741159258,)
+2024-04-05 00:03:36,791 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2024-04-05 00:04:05,375 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2024-04-05 00:04:05,375 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("users")
+2024-04-05 00:04:05,375 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2024-04-05 00:04:05,376 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("quizzes")
+2024-04-05 00:04:05,376 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2024-04-05 00:04:05,376 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("questions")
+2024-04-05 00:04:05,376 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2024-04-05 00:04:05,377 - sqlalchemy.engine.Engine - INFO - COMMIT
+2024-04-05 00:04:09,341 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2024-04-05 00:04:09,346 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) _post_configure_properties() started
+2024-04-05 00:04:09,346 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) initialize prop id
+2024-04-05 00:04:09,348 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) initialize prop username
+2024-04-05 00:04:09,349 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) initialize prop chat_id
+2024-04-05 00:04:09,354 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) initialize prop role
+2024-04-05 00:04:09,354 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) _post_configure_properties() complete
+2024-04-05 00:04:09,354 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) _post_configure_properties() started
+2024-04-05 00:04:09,354 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) initialize prop questions
+2024-04-05 00:04:09,357 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions setup primary join quizzes.id = questions.quiz_id
+2024-04-05 00:04:09,358 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions setup secondary join None
+2024-04-05 00:04:09,358 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions synchronize pairs [(quizzes.id => questions.quiz_id)]
+2024-04-05 00:04:09,358 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions secondary synchronize pairs []
+2024-04-05 00:04:09,358 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions local/remote pairs [(quizzes.id / questions.quiz_id)]
+2024-04-05 00:04:09,358 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions remote columns [questions.quiz_id]
+2024-04-05 00:04:09,359 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions local columns [quizzes.id]
+2024-04-05 00:04:09,359 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions relationship direction RelationshipDirection.ONETOMANY
+2024-04-05 00:04:09,359 - sqlalchemy.orm.strategies.LazyLoader - INFO - Quiz.questions lazy loading clause :param_1 = questions.quiz_id
+2024-04-05 00:04:09,360 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) initialize prop id
+2024-04-05 00:04:09,361 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) initialize prop subject
+2024-04-05 00:04:09,361 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) _post_configure_properties() complete
+2024-04-05 00:04:09,361 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) _post_configure_properties() started
+2024-04-05 00:04:09,361 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop quiz
+2024-04-05 00:04:09,363 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz setup primary join quizzes.id = questions.quiz_id
+2024-04-05 00:04:09,363 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz setup secondary join None
+2024-04-05 00:04:09,363 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz synchronize pairs [(quizzes.id => questions.quiz_id)]
+2024-04-05 00:04:09,363 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz secondary synchronize pairs []
+2024-04-05 00:04:09,363 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz local/remote pairs [(questions.quiz_id / quizzes.id)]
+2024-04-05 00:04:09,363 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz remote columns [quizzes.id]
+2024-04-05 00:04:09,364 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz local columns [questions.quiz_id]
+2024-04-05 00:04:09,364 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz relationship direction RelationshipDirection.MANYTOONE
+2024-04-05 00:04:09,364 - sqlalchemy.orm.strategies.LazyLoader - INFO - Question.quiz lazy loading clause quizzes.id = :param_1
+2024-04-05 00:04:09,365 - sqlalchemy.orm.strategies.LazyLoader - INFO - Question.quiz will use Session.get() to optimize instance loads
+2024-04-05 00:04:09,366 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop id
+2024-04-05 00:04:09,366 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop question
+2024-04-05 00:04:09,367 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop options
+2024-04-05 00:04:09,367 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop ans_index
+2024-04-05 00:04:09,367 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop quiz_id
+2024-04-05 00:04:09,368 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) _post_configure_properties() complete
+2024-04-05 00:04:09,369 - sqlalchemy.engine.Engine - INFO - SELECT users.id, users.username, users.chat_id, users.role 
+FROM users 
+WHERE users.chat_id = ?
+2024-04-05 00:04:09,369 - sqlalchemy.engine.Engine - INFO - [generated in 0.00022s] (1741159258,)
+2024-04-05 00:04:09,611 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2024-04-05 00:15:34,509 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2024-04-05 00:15:34,509 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("users")
+2024-04-05 00:15:34,509 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2024-04-05 00:15:34,510 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("quizzes")
+2024-04-05 00:15:34,510 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2024-04-05 00:15:34,510 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("questions")
+2024-04-05 00:15:34,510 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2024-04-05 00:15:34,510 - sqlalchemy.engine.Engine - INFO - COMMIT
+2024-04-05 00:16:16,681 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2024-04-05 00:16:16,686 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) _post_configure_properties() started
+2024-04-05 00:16:16,686 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) initialize prop id
+2024-04-05 00:16:16,690 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) initialize prop username
+2024-04-05 00:16:16,691 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) initialize prop chat_id
+2024-04-05 00:16:16,692 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) initialize prop role
+2024-04-05 00:16:16,692 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) _post_configure_properties() complete
+2024-04-05 00:16:16,692 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) _post_configure_properties() started
+2024-04-05 00:16:16,693 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) initialize prop questions
+2024-04-05 00:16:16,697 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions setup primary join quizzes.id = questions.quiz_id
+2024-04-05 00:16:16,698 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions setup secondary join None
+2024-04-05 00:16:16,698 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions synchronize pairs [(quizzes.id => questions.quiz_id)]
+2024-04-05 00:16:16,698 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions secondary synchronize pairs []
+2024-04-05 00:16:16,698 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions local/remote pairs [(quizzes.id / questions.quiz_id)]
+2024-04-05 00:16:16,699 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions remote columns [questions.quiz_id]
+2024-04-05 00:16:16,699 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions local columns [quizzes.id]
+2024-04-05 00:16:16,699 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions relationship direction RelationshipDirection.ONETOMANY
+2024-04-05 00:16:16,700 - sqlalchemy.orm.strategies.LazyLoader - INFO - Quiz.questions lazy loading clause :param_1 = questions.quiz_id
+2024-04-05 00:16:16,702 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) initialize prop id
+2024-04-05 00:16:16,703 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) initialize prop subject
+2024-04-05 00:16:16,703 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) _post_configure_properties() complete
+2024-04-05 00:16:16,703 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) _post_configure_properties() started
+2024-04-05 00:16:16,704 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop quiz
+2024-04-05 00:16:16,705 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz setup primary join quizzes.id = questions.quiz_id
+2024-04-05 00:16:16,706 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz setup secondary join None
+2024-04-05 00:16:16,706 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz synchronize pairs [(quizzes.id => questions.quiz_id)]
+2024-04-05 00:16:16,706 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz secondary synchronize pairs []
+2024-04-05 00:16:16,706 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz local/remote pairs [(questions.quiz_id / quizzes.id)]
+2024-04-05 00:16:16,706 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz remote columns [quizzes.id]
+2024-04-05 00:16:16,706 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz local columns [questions.quiz_id]
+2024-04-05 00:16:16,706 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz relationship direction RelationshipDirection.MANYTOONE
+2024-04-05 00:16:16,707 - sqlalchemy.orm.strategies.LazyLoader - INFO - Question.quiz lazy loading clause quizzes.id = :param_1
+2024-04-05 00:16:16,708 - sqlalchemy.orm.strategies.LazyLoader - INFO - Question.quiz will use Session.get() to optimize instance loads
+2024-04-05 00:16:16,709 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop id
+2024-04-05 00:16:16,709 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop question
+2024-04-05 00:16:16,709 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop options
+2024-04-05 00:16:16,710 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop ans_index
+2024-04-05 00:16:16,710 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop quiz_id
+2024-04-05 00:16:16,710 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) _post_configure_properties() complete
+2024-04-05 00:16:16,712 - sqlalchemy.engine.Engine - INFO - SELECT users.id, users.username, users.chat_id, users.role 
+FROM users 
+WHERE users.chat_id = ?
+2024-04-05 00:16:16,713 - sqlalchemy.engine.Engine - INFO - [generated in 0.00034s] (1741159258,)
+2024-04-05 00:16:17,697 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2024-04-05 00:18:25,955 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2024-04-05 00:18:25,955 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("users")
+2024-04-05 00:18:25,955 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2024-04-05 00:18:25,956 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("quizzes")
+2024-04-05 00:18:25,956 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2024-04-05 00:18:25,956 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("questions")
+2024-04-05 00:18:25,956 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2024-04-05 00:18:25,956 - sqlalchemy.engine.Engine - INFO - COMMIT
+2024-04-05 00:18:32,049 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2024-04-05 00:18:32,054 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) _post_configure_properties() started
+2024-04-05 00:18:32,055 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) initialize prop id
+2024-04-05 00:18:32,056 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) initialize prop username
+2024-04-05 00:18:32,057 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) initialize prop chat_id
+2024-04-05 00:18:32,061 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) initialize prop role
+2024-04-05 00:18:32,062 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) _post_configure_properties() complete
+2024-04-05 00:18:32,062 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) _post_configure_properties() started
+2024-04-05 00:18:32,062 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) initialize prop questions
+2024-04-05 00:18:32,065 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions setup primary join quizzes.id = questions.quiz_id
+2024-04-05 00:18:32,066 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions setup secondary join None
+2024-04-05 00:18:32,066 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions synchronize pairs [(quizzes.id => questions.quiz_id)]
+2024-04-05 00:18:32,067 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions secondary synchronize pairs []
+2024-04-05 00:18:32,067 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions local/remote pairs [(quizzes.id / questions.quiz_id)]
+2024-04-05 00:18:32,067 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions remote columns [questions.quiz_id]
+2024-04-05 00:18:32,067 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions local columns [quizzes.id]
+2024-04-05 00:18:32,068 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions relationship direction RelationshipDirection.ONETOMANY
+2024-04-05 00:18:32,069 - sqlalchemy.orm.strategies.LazyLoader - INFO - Quiz.questions lazy loading clause :param_1 = questions.quiz_id
+2024-04-05 00:18:32,070 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) initialize prop id
+2024-04-05 00:18:32,071 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) initialize prop subject
+2024-04-05 00:18:32,071 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) _post_configure_properties() complete
+2024-04-05 00:18:32,072 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) _post_configure_properties() started
+2024-04-05 00:18:32,072 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop quiz
+2024-04-05 00:18:32,073 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz setup primary join quizzes.id = questions.quiz_id
+2024-04-05 00:18:32,073 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz setup secondary join None
+2024-04-05 00:18:32,073 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz synchronize pairs [(quizzes.id => questions.quiz_id)]
+2024-04-05 00:18:32,073 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz secondary synchronize pairs []
+2024-04-05 00:18:32,073 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz local/remote pairs [(questions.quiz_id / quizzes.id)]
+2024-04-05 00:18:32,074 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz remote columns [quizzes.id]
+2024-04-05 00:18:32,074 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz local columns [questions.quiz_id]
+2024-04-05 00:18:32,074 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz relationship direction RelationshipDirection.MANYTOONE
+2024-04-05 00:18:32,074 - sqlalchemy.orm.strategies.LazyLoader - INFO - Question.quiz lazy loading clause quizzes.id = :param_1
+2024-04-05 00:18:32,075 - sqlalchemy.orm.strategies.LazyLoader - INFO - Question.quiz will use Session.get() to optimize instance loads
+2024-04-05 00:18:32,075 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop id
+2024-04-05 00:18:32,076 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop question
+2024-04-05 00:18:32,076 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop options
+2024-04-05 00:18:32,077 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop ans_index
+2024-04-05 00:18:32,077 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop quiz_id
+2024-04-05 00:18:32,077 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) _post_configure_properties() complete
+2024-04-05 00:18:32,079 - sqlalchemy.engine.Engine - INFO - SELECT users.id, users.username, users.chat_id, users.role 
+FROM users 
+WHERE users.chat_id = ?
+2024-04-05 00:18:32,079 - sqlalchemy.engine.Engine - INFO - [generated in 0.00026s] (1741159258,)
+2024-04-05 00:18:32,254 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2024-04-05 00:20:48,963 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2024-04-05 00:20:48,963 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("users")
+2024-04-05 00:20:48,964 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2024-04-05 00:20:48,964 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("quizzes")
+2024-04-05 00:20:48,964 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2024-04-05 00:20:48,964 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("questions")
+2024-04-05 00:20:48,964 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2024-04-05 00:20:48,965 - sqlalchemy.engine.Engine - INFO - COMMIT
+2024-04-05 00:20:54,621 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2024-04-05 00:20:54,628 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) _post_configure_properties() started
+2024-04-05 00:20:54,629 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) initialize prop id
+2024-04-05 00:20:54,631 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) initialize prop username
+2024-04-05 00:20:54,631 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) initialize prop chat_id
+2024-04-05 00:20:54,635 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) initialize prop role
+2024-04-05 00:20:54,635 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) _post_configure_properties() complete
+2024-04-05 00:20:54,636 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) _post_configure_properties() started
+2024-04-05 00:20:54,636 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) initialize prop questions
+2024-04-05 00:20:54,639 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions setup primary join quizzes.id = questions.quiz_id
+2024-04-05 00:20:54,639 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions setup secondary join None
+2024-04-05 00:20:54,640 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions synchronize pairs [(quizzes.id => questions.quiz_id)]
+2024-04-05 00:20:54,640 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions secondary synchronize pairs []
+2024-04-05 00:20:54,640 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions local/remote pairs [(quizzes.id / questions.quiz_id)]
+2024-04-05 00:20:54,640 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions remote columns [questions.quiz_id]
+2024-04-05 00:20:54,640 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions local columns [quizzes.id]
+2024-04-05 00:20:54,640 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions relationship direction RelationshipDirection.ONETOMANY
+2024-04-05 00:20:54,641 - sqlalchemy.orm.strategies.LazyLoader - INFO - Quiz.questions lazy loading clause :param_1 = questions.quiz_id
+2024-04-05 00:20:54,642 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) initialize prop id
+2024-04-05 00:20:54,643 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) initialize prop subject
+2024-04-05 00:20:54,643 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) _post_configure_properties() complete
+2024-04-05 00:20:54,643 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) _post_configure_properties() started
+2024-04-05 00:20:54,644 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop quiz
+2024-04-05 00:20:54,645 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz setup primary join quizzes.id = questions.quiz_id
+2024-04-05 00:20:54,645 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz setup secondary join None
+2024-04-05 00:20:54,645 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz synchronize pairs [(quizzes.id => questions.quiz_id)]
+2024-04-05 00:20:54,645 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz secondary synchronize pairs []
+2024-04-05 00:20:54,645 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz local/remote pairs [(questions.quiz_id / quizzes.id)]
+2024-04-05 00:20:54,646 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz remote columns [quizzes.id]
+2024-04-05 00:20:54,646 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz local columns [questions.quiz_id]
+2024-04-05 00:20:54,646 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz relationship direction RelationshipDirection.MANYTOONE
+2024-04-05 00:20:54,646 - sqlalchemy.orm.strategies.LazyLoader - INFO - Question.quiz lazy loading clause quizzes.id = :param_1
+2024-04-05 00:20:54,647 - sqlalchemy.orm.strategies.LazyLoader - INFO - Question.quiz will use Session.get() to optimize instance loads
+2024-04-05 00:20:54,648 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop id
+2024-04-05 00:20:54,648 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop question
+2024-04-05 00:20:54,649 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop options
+2024-04-05 00:20:54,649 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop ans_index
+2024-04-05 00:20:54,649 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop quiz_id
+2024-04-05 00:20:54,650 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) _post_configure_properties() complete
+2024-04-05 00:20:54,651 - sqlalchemy.engine.Engine - INFO - SELECT users.id, users.username, users.chat_id, users.role 
+FROM users 
+WHERE users.chat_id = ?
+2024-04-05 00:20:54,651 - sqlalchemy.engine.Engine - INFO - [generated in 0.00021s] (1741159258,)
+2024-04-05 00:20:54,652 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2024-04-05 00:20:54,896 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2024-04-05 00:20:54,899 - sqlalchemy.engine.Engine - INFO - SELECT users.id, users.username, users.chat_id, users.role 
+FROM users 
+WHERE users.role = ?
+2024-04-05 00:20:54,899 - sqlalchemy.engine.Engine - INFO - [generated in 0.00064s] ('admin',)
+2024-04-05 00:20:54,901 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2024-04-05 00:23:03,533 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2024-04-05 00:23:03,533 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("users")
+2024-04-05 00:23:03,533 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2024-04-05 00:23:03,534 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("quizzes")
+2024-04-05 00:23:03,534 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2024-04-05 00:23:03,534 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("questions")
+2024-04-05 00:23:03,534 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2024-04-05 00:23:03,534 - sqlalchemy.engine.Engine - INFO - COMMIT
+2024-04-05 00:23:09,907 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2024-04-05 00:23:09,909 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) _post_configure_properties() started
+2024-04-05 00:23:09,909 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) initialize prop id
+2024-04-05 00:23:09,910 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) initialize prop username
+2024-04-05 00:23:09,910 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) initialize prop chat_id
+2024-04-05 00:23:09,912 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) initialize prop role
+2024-04-05 00:23:09,912 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) _post_configure_properties() complete
+2024-04-05 00:23:09,912 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) _post_configure_properties() started
+2024-04-05 00:23:09,912 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) initialize prop questions
+2024-04-05 00:23:09,914 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions setup primary join quizzes.id = questions.quiz_id
+2024-04-05 00:23:09,914 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions setup secondary join None
+2024-04-05 00:23:09,914 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions synchronize pairs [(quizzes.id => questions.quiz_id)]
+2024-04-05 00:23:09,914 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions secondary synchronize pairs []
+2024-04-05 00:23:09,914 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions local/remote pairs [(quizzes.id / questions.quiz_id)]
+2024-04-05 00:23:09,914 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions remote columns [questions.quiz_id]
+2024-04-05 00:23:09,915 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions local columns [quizzes.id]
+2024-04-05 00:23:09,915 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions relationship direction RelationshipDirection.ONETOMANY
+2024-04-05 00:23:09,915 - sqlalchemy.orm.strategies.LazyLoader - INFO - Quiz.questions lazy loading clause :param_1 = questions.quiz_id
+2024-04-05 00:23:09,916 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) initialize prop id
+2024-04-05 00:23:09,916 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) initialize prop subject
+2024-04-05 00:23:09,916 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) _post_configure_properties() complete
+2024-04-05 00:23:09,916 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) _post_configure_properties() started
+2024-04-05 00:23:09,917 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop quiz
+2024-04-05 00:23:09,918 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz setup primary join quizzes.id = questions.quiz_id
+2024-04-05 00:23:09,918 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz setup secondary join None
+2024-04-05 00:23:09,918 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz synchronize pairs [(quizzes.id => questions.quiz_id)]
+2024-04-05 00:23:09,918 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz secondary synchronize pairs []
+2024-04-05 00:23:09,918 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz local/remote pairs [(questions.quiz_id / quizzes.id)]
+2024-04-05 00:23:09,918 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz remote columns [quizzes.id]
+2024-04-05 00:23:09,918 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz local columns [questions.quiz_id]
+2024-04-05 00:23:09,918 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz relationship direction RelationshipDirection.MANYTOONE
+2024-04-05 00:23:09,919 - sqlalchemy.orm.strategies.LazyLoader - INFO - Question.quiz lazy loading clause quizzes.id = :param_1
+2024-04-05 00:23:09,919 - sqlalchemy.orm.strategies.LazyLoader - INFO - Question.quiz will use Session.get() to optimize instance loads
+2024-04-05 00:23:09,920 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop id
+2024-04-05 00:23:09,920 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop question
+2024-04-05 00:23:09,920 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop options
+2024-04-05 00:23:09,921 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop ans_index
+2024-04-05 00:23:09,921 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop quiz_id
+2024-04-05 00:23:09,921 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) _post_configure_properties() complete
+2024-04-05 00:23:09,923 - sqlalchemy.engine.Engine - INFO - SELECT users.id, users.username, users.chat_id, users.role 
+FROM users 
+WHERE users.chat_id = ?
+2024-04-05 00:23:09,923 - sqlalchemy.engine.Engine - INFO - [generated in 0.00019s] (1741159258,)
+2024-04-05 00:23:09,925 - sqlalchemy.engine.Engine - INFO - INSERT INTO users (username, chat_id, role) VALUES (?, ?, ?)
+2024-04-05 00:23:09,925 - sqlalchemy.engine.Engine - INFO - [generated in 0.00017s] ('Mindahun21', 1741159258, 'admin')
+2024-04-05 00:23:09,925 - sqlalchemy.engine.Engine - INFO - COMMIT
+2024-04-05 00:23:09,933 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2024-04-05 00:23:09,935 - sqlalchemy.engine.Engine - INFO - SELECT users.id, users.username, users.chat_id, users.role 
+FROM users 
+WHERE users.id = ?
+2024-04-05 00:23:09,935 - sqlalchemy.engine.Engine - INFO - [generated in 0.00021s] (1,)
+2024-04-05 00:23:10,882 - sqlalchemy.engine.Engine - INFO - ROLLBACK
+2024-04-05 00:25:05,125 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2024-04-05 00:25:05,125 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("users")
+2024-04-05 00:25:05,125 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2024-04-05 00:25:05,125 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("quizzes")
+2024-04-05 00:25:05,126 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2024-04-05 00:25:05,126 - sqlalchemy.engine.Engine - INFO - PRAGMA main.table_info("questions")
+2024-04-05 00:25:05,126 - sqlalchemy.engine.Engine - INFO - [raw sql] ()
+2024-04-05 00:25:05,126 - sqlalchemy.engine.Engine - INFO - COMMIT
+2024-04-05 00:25:10,179 - sqlalchemy.engine.Engine - INFO - BEGIN (implicit)
+2024-04-05 00:25:10,181 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) _post_configure_properties() started
+2024-04-05 00:25:10,181 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) initialize prop id
+2024-04-05 00:25:10,182 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) initialize prop username
+2024-04-05 00:25:10,182 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) initialize prop chat_id
+2024-04-05 00:25:10,184 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) initialize prop role
+2024-04-05 00:25:10,184 - sqlalchemy.orm.mapper.Mapper - INFO - (User|users) _post_configure_properties() complete
+2024-04-05 00:25:10,184 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) _post_configure_properties() started
+2024-04-05 00:25:10,184 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) initialize prop questions
+2024-04-05 00:25:10,186 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions setup primary join quizzes.id = questions.quiz_id
+2024-04-05 00:25:10,186 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions setup secondary join None
+2024-04-05 00:25:10,187 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions synchronize pairs [(quizzes.id => questions.quiz_id)]
+2024-04-05 00:25:10,187 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions secondary synchronize pairs []
+2024-04-05 00:25:10,187 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions local/remote pairs [(quizzes.id / questions.quiz_id)]
+2024-04-05 00:25:10,187 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions remote columns [questions.quiz_id]
+2024-04-05 00:25:10,187 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions local columns [quizzes.id]
+2024-04-05 00:25:10,187 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Quiz.questions relationship direction RelationshipDirection.ONETOMANY
+2024-04-05 00:25:10,187 - sqlalchemy.orm.strategies.LazyLoader - INFO - Quiz.questions lazy loading clause :param_1 = questions.quiz_id
+2024-04-05 00:25:10,188 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) initialize prop id
+2024-04-05 00:25:10,188 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) initialize prop subject
+2024-04-05 00:25:10,189 - sqlalchemy.orm.mapper.Mapper - INFO - (Quiz|quizzes) _post_configure_properties() complete
+2024-04-05 00:25:10,189 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) _post_configure_properties() started
+2024-04-05 00:25:10,189 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop quiz
+2024-04-05 00:25:10,190 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz setup primary join quizzes.id = questions.quiz_id
+2024-04-05 00:25:10,190 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz setup secondary join None
+2024-04-05 00:25:10,190 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz synchronize pairs [(quizzes.id => questions.quiz_id)]
+2024-04-05 00:25:10,190 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz secondary synchronize pairs []
+2024-04-05 00:25:10,190 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz local/remote pairs [(questions.quiz_id / quizzes.id)]
+2024-04-05 00:25:10,190 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz remote columns [quizzes.id]
+2024-04-05 00:25:10,190 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz local columns [questions.quiz_id]
+2024-04-05 00:25:10,190 - sqlalchemy.orm.relationships.RelationshipProperty - INFO - Question.quiz relationship direction RelationshipDirection.MANYTOONE
+2024-04-05 00:25:10,191 - sqlalchemy.orm.strategies.LazyLoader - INFO - Question.quiz lazy loading clause quizzes.id = :param_1
+2024-04-05 00:25:10,191 - sqlalchemy.orm.strategies.LazyLoader - INFO - Question.quiz will use Session.get() to optimize instance loads
+2024-04-05 00:25:10,192 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop id
+2024-04-05 00:25:10,192 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop question
+2024-04-05 00:25:10,192 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop options
+2024-04-05 00:25:10,193 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop ans_index
+2024-04-05 00:25:10,193 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) initialize prop quiz_id
+2024-04-05 00:25:10,193 - sqlalchemy.orm.mapper.Mapper - INFO - (Question|questions) _post_configure_properties() complete
+2024-04-05 00:25:10,195 - sqlalchemy.engine.Engine - INFO - SELECT users.id, users.username, users.chat_id, users.role 
+FROM users 
+WHERE users.chat_id = ?
+2024-04-05 00:25:10,195 - sqlalchemy.engine.Engine - INFO - [generated in 0.00020s] (1741159258,)
+2024-04-05 00:25:10,441 - sqlalchemy.engine.Engine - INFO - ROLLBACK
