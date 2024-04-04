@@ -1,0 +1,29 @@
+from app.db import access_db
+from app.db_utils import get_role
+from app.models import Role
+from app.handlers import register_handler
+
+from telegram import Update
+from telegram.ext import ContextTypes, CommandHandler
+
+
+@access_db
+async def help_handler(update:Update, context=ContextTypes.DEFAULT_TYPE, db=None):
+
+    role,_ =await get_role(chat_id=update.effective_chat.id, db=db)
+
+    msg =None
+
+    if role == Role.USER:
+        msg="user"
+    elif role == Role.ADMIN:
+        msg="admin"
+    else:
+        msg="please first start the bot by using /start command"
+
+    if msg:
+        await update.message.reply_text(msg)
+
+handler = CommandHandler("help",help_handler)
+register_handler(handler)
+
