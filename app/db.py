@@ -7,11 +7,11 @@ from sqlalchemy.orm import sessionmaker,Session
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.exc import SQLAlchemyError
 
-engine = create_engine('sqlite:///quiz.db')
+engine = create_engine('sqlite:///app/quiz.db')
 
 localSession = sessionmaker(bind=engine,autoflush=False, autocommit=False, expire_on_commit=False)
 
-logger = logging.gteLogger(__name__)
+logger = logging.getLogger(__name__)
 
 def get_db() -> Session:
     return localSession()
