@@ -24,6 +24,7 @@ class User(Base):
 class Quiz(Base):
     __tablename__ = 'quizzes'
     id = mapped_column(Integer, primary_key=True)
+    name = mapped_column(Text,unique=True)
     subject = mapped_column(Text)
     questions = relationship("Question", back_populates="quiz")
 
