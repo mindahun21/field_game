@@ -1,10 +1,10 @@
 import logging
 
 def init_logger():
-    logger = logging.getLogger("quiz")
+    logger = logging.getLogger("app")
     logger.setLevel(logging.DEBUG)
 
-    main_handler =logging.FileHandler("quiz.log",mode="a")
+    main_handler =logging.FileHandler("app.log",mode="a")
     main_handler.setLevel(logging.WARNING)
     formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
     main_handler.setFormatter(formatter)

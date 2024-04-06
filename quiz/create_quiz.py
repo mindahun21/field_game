@@ -3,7 +3,7 @@ from enum import Enum
 from sqlalchemy.orm import Session
 
 from app.handlers import register_handler
-from app.models import Quiz, Role,Question
+from app.models import Quiz, Role,Question, User
 from app import db_utils
 from app.utils import cancel_conversation, invalid_message
 from app.db import access_db
@@ -59,14 +59,20 @@ async def get_name(update:Update,context:ContextTypes.DEFAULT_TYPE, db:Session=N
 
 @access_db
 async def get_subject(update:Update,context:ContextTypes.DEFAULT_TYPE,db:Session=None):
+    user =await db_utils.get_entry(User,db=db,chat_id = update.effective_chat.id)
+
+    if user is None:
+        return
+    
     quiz =Quiz(
         name=context.user_data["name"],
         subject=update.message.text,
+        creator_id=user.id,
     )
 
     await db_utils.add_obj(quiz,db=db)
     await update.message.reply_text(
-        f"QUIZ: {context.user_data["name"]} is successfully created.\nif you want to add questions in the quiz,please Enter First Question\nor if you want to cancel hear use /stop command."
+        f"QUIZ: {context.user_data["name"]} is successfully created.\nif you want to add questions in the quiz,please Enter First Question\nor if you want to cancel hear use /cancel command."
     )
     context.user_data["quiz"]=quiz
 
@@ -112,5 +118,5 @@ handler = ConversationHandler(
     ],
 
 )
-
+print("create quiz registered")
 register_handler(handler)

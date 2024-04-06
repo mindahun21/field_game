@@ -16,9 +16,10 @@ async def help_handler(update:Update, context=ContextTypes.DEFAULT_TYPE, db=None
     msg =None
 
     if role == Role.USER:
-        msg="user"
+        msg="USER COMMANDS:\nuse /take_quiz command to take quiz.\n "
     elif role == Role.ADMIN:
-        msg="ADMIN COMMANDS:\nuse /create_quiz to create quiz."
+        msg="ADMIN COMMANDS:\nuse /create_quiz to create quiz.\n"
+        msg+="Use /take_quiz command to take quiz.\n"
     else:
         msg="please first start the bot by using /start command"
 

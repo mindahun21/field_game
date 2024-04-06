@@ -19,6 +19,7 @@ class User(Base):
     username = mapped_column(Text)
     chat_id = mapped_column(String(255), unique=True, nullable=True)
     role = mapped_column(Text, default="user")
+    quizzes = relationship("Quiz",back_populates="creator")
 
 
 class Quiz(Base):
@@ -26,8 +27,9 @@ class Quiz(Base):
     id = mapped_column(Integer, primary_key=True)
     name = mapped_column(Text,unique=True)
     subject = mapped_column(Text)
+    creator_id =mapped_column(ForeignKey("users.id"))
     questions = relationship("Question", back_populates="quiz")
-
+    creator = relationship("User", back_populates="quizzes")
 
 class Question(Base):
     __tablename__ = 'questions'

@@ -41,7 +41,7 @@ async def start(update:Update, context:ContextTypes.DEFAULT_TYPE,db:Session=None
         )
         await db_utils.add_obj(user,db=db)
         await update.message.reply_text(
-            f"hello, ADMIN {update.effective_chat.username}:\nuse /help_admin to start using this bot as admin"
+            f"hello, ADMIN {update.effective_chat.username}:\nuse /help to start using this bot as admin"
         )
     elif role == Role.NONE:
         user = User(

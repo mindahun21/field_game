@@ -20,13 +20,15 @@ if __name__ == '__main__':
     Base.metadata.create_all(bind=engine)
     config=dotenv_values(".env")
     API_KEY = config["API_KEY"]
-
+    print("BOT started.")
     application =(
         ApplicationBuilder()
         .token(API_KEY)
         .concurrent_updates(True)
         .build()
     )
+
+    print(get_handlers())
 
     application.add_handlers(get_handlers())
     application.add_error_handler(error_handler)
