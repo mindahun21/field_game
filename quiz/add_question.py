@@ -3,13 +3,14 @@ from enum import Enum
 from telegram import(
     ReplyKeyboardMarkup,
     Update,
-    ContextTypes,
 )
 
 from telegram.ext import (
     ConversationHandler,
     CommandHandler,
     MessageHandler,
+    ContextTypes,
+
     filters,
 )
 
@@ -17,6 +18,7 @@ from app.utils import cancel_conversation, invalid_message
 from app.db import access_db
 from app import db_utils
 from app.models import Quiz, Question
+from app.handlers import register_handler
 
 class State(Enum):
     CHOOSE_QUIZ=1
@@ -70,7 +72,7 @@ async def get_options(update:Update, context:ContextTypes.DEFAULT_TYPE):
 async def get_answer(update:Update, context:ContextTypes.DEFAULT_TYPE,              db:Session=None):
     question = Question(
         question=context.user_data['question'],
-        option=context.user_data['options'],
+        options=context.user_data['options'],
         ans_index=context.user_data['ans'],
         quiz_id=context.user_data["quiz"].id
     )
@@ -93,3 +95,6 @@ handler = ConversationHandler(
         MessageHandler(filters.ALL,invalid_message),
     ],
 )
+
+
+register_handler(handler)

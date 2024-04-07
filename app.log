@@ -1,0 +1,390 @@
+2024-04-06 23:26:45,106 - app.errors - ERROR - An exception has occurred
+Traceback (most recent call last):
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_application.py", line 1264, in process_update
+    await coroutine
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_handlers/conversationhandler.py", line 857, in handle_update
+    new_state: object = await handler.handle_update(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_handlers/basehandler.py", line 157, in handle_update
+    return await self.callback(update, context)
+  File "/home/mindahun/programs/python/weather_bot/app/db.py", line 38, in inject_db
+    return await util(*args,db=db,**kwargs)
+  File "/home/mindahun/programs/python/weather_bot/quiz/create_quiz.py", line 35, in ask_name
+    role,_ = db_utils.get_role(update.effective_chat.id,db=db)
+TypeError: cannot unpack non-iterable coroutine object
+2024-04-06 23:29:06,268 - app.db - ERROR - An Exception has occured:
+Traceback (most recent call last):
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1971, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 919, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: quizzes.name
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/mindahun/programs/python/weather_bot/app/db.py", line 25, in session_scope
+    yield session
+  File "/home/mindahun/programs/python/weather_bot/app/db.py", line 38, in inject_db
+    return await util(*args,db=db,**kwargs)
+  File "/home/mindahun/programs/python/weather_bot/quiz/create_quiz.py", line 48, in get_name
+    quiz = await db_utils.get_entry(Quiz,db=db,name=name)
+  File "/home/mindahun/programs/python/weather_bot/app/db_utils.py", line 60, in get_entry
+    entry=db.scalars(stmt).first()
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2414, in scalars
+    return self._execute_internal(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2191, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/sqlalchemy/orm/context.py", line 293, in orm_execute_statement
+    result = conn.execute(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1422, in execute
+    return meth(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 514, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1644, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1850, in _execute_context
+    return self._exec_single_context(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1990, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2357, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1971, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 919, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: quizzes.name
+[SQL: SELECT quizzes.id, quizzes.name, quizzes.subject, quizzes.creator_id 
+FROM quizzes 
+WHERE quizzes.name = ?]
+[parameters: ('FIRST QUIZ',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-04-06 23:29:06,273 - app.errors - ERROR - An exception has occurred
+Traceback (most recent call last):
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1971, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 919, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such column: quizzes.name
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_application.py", line 1264, in process_update
+    await coroutine
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_handlers/conversationhandler.py", line 857, in handle_update
+    new_state: object = await handler.handle_update(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_handlers/basehandler.py", line 157, in handle_update
+    return await self.callback(update, context)
+  File "/home/mindahun/programs/python/weather_bot/app/db.py", line 38, in inject_db
+    return await util(*args,db=db,**kwargs)
+  File "/home/mindahun/programs/python/weather_bot/quiz/create_quiz.py", line 48, in get_name
+    quiz = await db_utils.get_entry(Quiz,db=db,name=name)
+  File "/home/mindahun/programs/python/weather_bot/app/db_utils.py", line 60, in get_entry
+    entry=db.scalars(stmt).first()
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2414, in scalars
+    return self._execute_internal(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 2191, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/sqlalchemy/orm/context.py", line 293, in orm_execute_statement
+    result = conn.execute(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1422, in execute
+    return meth(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 514, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1644, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1850, in _execute_context
+    return self._exec_single_context(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1990, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2357, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1971, in _exec_single_context
+    self.dialect.do_execute(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 919, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such column: quizzes.name
+[SQL: SELECT quizzes.id, quizzes.name, quizzes.subject, quizzes.creator_id 
+FROM quizzes 
+WHERE quizzes.name = ?]
+[parameters: ('FIRST QUIZ',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2024-04-06 23:45:16,738 - app.errors - ERROR - An exception has occurred
+Traceback (most recent call last):
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_application.py", line 1264, in process_update
+    await coroutine
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_handlers/conversationhandler.py", line 857, in handle_update
+    new_state: object = await handler.handle_update(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_handlers/basehandler.py", line 157, in handle_update
+    return await self.callback(update, context)
+  File "/home/mindahun/programs/python/weather_bot/app/db.py", line 38, in inject_db
+    return await util(*args,db=db,**kwargs)
+  File "/home/mindahun/programs/python/weather_bot/quiz/create_quiz.py", line 98, in get_answer
+    ans_index=context.user_data['ans'],
+KeyError: 'ans'
+2024-04-06 23:50:04,795 - app.errors - ERROR - An exception has occurred
+Traceback (most recent call last):
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_application.py", line 1264, in process_update
+    await coroutine
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_handlers/conversationhandler.py", line 857, in handle_update
+    new_state: object = await handler.handle_update(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_handlers/basehandler.py", line 157, in handle_update
+    return await self.callback(update, context)
+  File "/home/mindahun/programs/python/weather_bot/app/db.py", line 38, in inject_db
+    return await util(*args,db=db,**kwargs)
+  File "/home/mindahun/programs/python/weather_bot/quiz/create_quiz.py", line 95, in get_answer
+    question = Question(
+TypeError: __init__() got an unexpected keyword argument 'option'
+2024-04-06 23:52:29,039 - app.errors - ERROR - An exception has occurred
+Traceback (most recent call last):
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_application.py", line 1264, in process_update
+    await coroutine
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_handlers/conversationhandler.py", line 857, in handle_update
+    new_state: object = await handler.handle_update(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_handlers/basehandler.py", line 157, in handle_update
+    return await self.callback(update, context)
+  File "/home/mindahun/programs/python/weather_bot/app/db.py", line 38, in inject_db
+    return await util(*args,db=db,**kwargs)
+  File "/home/mindahun/programs/python/weather_bot/quiz/create_quiz.py", line 95, in get_answer
+    question = Question(
+TypeError: __init__() got an unexpected keyword argument 'quiz_id'
+2024-04-06 23:58:19,627 - app.errors - ERROR - An exception has occurred
+Traceback (most recent call last):
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_application.py", line 1264, in process_update
+    await coroutine
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_handlers/conversationhandler.py", line 857, in handle_update
+    new_state: object = await handler.handle_update(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_handlers/basehandler.py", line 157, in handle_update
+    return await self.callback(update, context)
+  File "/home/mindahun/programs/python/weather_bot/app/db.py", line 38, in inject_db
+    return await util(*args,db=db,**kwargs)
+  File "/home/mindahun/programs/python/weather_bot/quiz/create_quiz.py", line 95, in get_answer
+    question = Question(
+TypeError: __init__() got an unexpected keyword argument 'quiz_id'
+2024-04-07 09:25:08,513 - app.errors - ERROR - An exception has occurred
+Traceback (most recent call last):
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpx/_transports/default.py", line 69, in map_httpcore_exceptions
+    yield
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpx/_transports/default.py", line 373, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpcore/_async/connection_pool.py", line 216, in handle_async_request
+    raise exc from None
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpcore/_async/connection_pool.py", line 196, in handle_async_request
+    response = await connection.handle_async_request(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpcore/_async/connection.py", line 99, in handle_async_request
+    raise exc
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpcore/_async/connection.py", line 76, in handle_async_request
+    stream = await self._connect(request)
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpcore/_async/connection.py", line 122, in _connect
+    stream = await self._network_backend.connect_tcp(**kwargs)
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpcore/_backends/auto.py", line 30, in connect_tcp
+    return await self._backend.connect_tcp(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpcore/_backends/anyio.py", line 114, in connect_tcp
+    with map_exceptions(exc_map):
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [Errno -2] Name or service not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/request/_httpxrequest.py", line 276, in do_request
+    res = await self._client.request(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpx/_client.py", line 1574, in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpx/_client.py", line 1661, in send
+    response = await self._send_handling_auth(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpx/_client.py", line 1689, in _send_handling_auth
+    response = await self._send_handling_redirects(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpx/_client.py", line 1726, in _send_handling_redirects
+    response = await self._send_single_request(request)
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpx/_client.py", line 1763, in _send_single_request
+    response = await transport.handle_async_request(request)
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpx/_transports/default.py", line 372, in handle_async_request
+    with map_httpcore_exceptions():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpx/_transports/default.py", line 86, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [Errno -2] Name or service not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_updater.py", line 742, in _network_loop_retry
+    if not await do_action():
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_updater.py", line 736, in do_action
+    return action_cb_task.result()
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_updater.py", line 387, in polling_action_cb
+    raise exc
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_updater.py", line 376, in polling_action_cb
+    updates = await self.bot.get_updates(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_extbot.py", line 618, in get_updates
+    updates = await super().get_updates(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/_bot.py", line 541, in decorator
+    result = await func(self, *args, **kwargs)
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/_bot.py", line 4177, in get_updates
+    await self._post(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/_bot.py", line 629, in _post
+    return await self._do_post(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_extbot.py", line 347, in _do_post
+    return await super()._do_post(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/_bot.py", line 657, in _do_post
+    return await request.post(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/request/_baserequest.py", line 200, in post
+    result = await self._request_wrapper(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/request/_baserequest.py", line 340, in _request_wrapper
+    raise exc
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/request/_baserequest.py", line 330, in _request_wrapper
+    code, payload = await self.do_request(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/request/_httpxrequest.py", line 300, in do_request
+    raise NetworkError(f"httpx.{err.__class__.__name__}: {err}") from err
+telegram.error.NetworkError: httpx.ConnectError: [Errno -2] Name or service not known
+2024-04-07 10:28:18,009 - app.errors - ERROR - An exception has occurred
+Traceback (most recent call last):
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_application.py", line 1264, in process_update
+    await coroutine
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_handlers/conversationhandler.py", line 857, in handle_update
+    new_state: object = await handler.handle_update(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_handlers/basehandler.py", line 157, in handle_update
+    return await self.callback(update, context)
+  File "/home/mindahun/programs/python/weather_bot/app/db.py", line 38, in inject_db
+    return await util(*args,db=db,**kwargs)
+  File "/home/mindahun/programs/python/weather_bot/quiz/create_quiz.py", line 95, in get_answer
+    question = Question(
+TypeError: __init__() got an unexpected keyword argument 'quiz_id'
+2024-04-07 10:31:24,395 - app.errors - ERROR - An exception has occurred
+Traceback (most recent call last):
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_application.py", line 1264, in process_update
+    await coroutine
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_handlers/conversationhandler.py", line 857, in handle_update
+    new_state: object = await handler.handle_update(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_handlers/basehandler.py", line 157, in handle_update
+    return await self.callback(update, context)
+  File "/home/mindahun/programs/python/weather_bot/app/db.py", line 38, in inject_db
+    return await util(*args,db=db,**kwargs)
+  File "/home/mindahun/programs/python/weather_bot/quiz/create_quiz.py", line 98, in get_answer
+    ans_index=int(update.message.text),
+ValueError: invalid literal for int() with base 10: '/cancel'
+2024-04-07 10:39:22,346 - app.errors - ERROR - An exception has occurred
+Traceback (most recent call last):
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_application.py", line 1264, in process_update
+    await coroutine
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_handlers/conversationhandler.py", line 857, in handle_update
+    new_state: object = await handler.handle_update(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_handlers/basehandler.py", line 157, in handle_update
+    return await self.callback(update, context)
+  File "/home/mindahun/programs/python/weather_bot/app/db.py", line 38, in inject_db
+    return await util(*args,db=db,**kwargs)
+  File "/home/mindahun/programs/python/weather_bot/quiz/create_quiz.py", line 98, in get_answer
+    ans_index=int(update.message.text),
+ValueError: invalid literal for int() with base 10: '/create_quiz'
+2024-04-07 10:39:38,193 - app.errors - ERROR - An exception has occurred
+Traceback (most recent call last):
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_application.py", line 1264, in process_update
+    await coroutine
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_handlers/conversationhandler.py", line 857, in handle_update
+    new_state: object = await handler.handle_update(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_handlers/basehandler.py", line 157, in handle_update
+    return await self.callback(update, context)
+  File "/home/mindahun/programs/python/weather_bot/app/db.py", line 38, in inject_db
+    return await util(*args,db=db,**kwargs)
+  File "/home/mindahun/programs/python/weather_bot/quiz/create_quiz.py", line 98, in get_answer
+    ans_index=int(update.message.text),
+ValueError: invalid literal for int() with base 10: '/cancel'
+2024-04-07 10:41:41,214 - app.errors - ERROR - An exception has occurred
+Traceback (most recent call last):
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_application.py", line 1264, in process_update
+    await coroutine
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_handlers/conversationhandler.py", line 857, in handle_update
+    new_state: object = await handler.handle_update(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_handlers/basehandler.py", line 157, in handle_update
+    return await self.callback(update, context)
+  File "/home/mindahun/programs/python/weather_bot/app/db.py", line 38, in inject_db
+    return await util(*args,db=db,**kwargs)
+  File "/home/mindahun/programs/python/weather_bot/quiz/create_quiz.py", line 98, in get_answer
+    ans_index=int(update.message.text),
+ValueError: invalid literal for int() with base 10: '/cancel'
+2024-04-07 19:10:20,091 - app.errors - ERROR - An exception has occurred
+Traceback (most recent call last):
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpx/_transports/default.py", line 69, in map_httpcore_exceptions
+    yield
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpx/_transports/default.py", line 373, in handle_async_request
+    resp = await self._pool.handle_async_request(req)
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpcore/_async/connection_pool.py", line 216, in handle_async_request
+    raise exc from None
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpcore/_async/connection_pool.py", line 196, in handle_async_request
+    response = await connection.handle_async_request(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpcore/_async/connection.py", line 99, in handle_async_request
+    raise exc
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpcore/_async/connection.py", line 76, in handle_async_request
+    stream = await self._connect(request)
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpcore/_async/connection.py", line 122, in _connect
+    stream = await self._network_backend.connect_tcp(**kwargs)
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpcore/_backends/auto.py", line 30, in connect_tcp
+    return await self._backend.connect_tcp(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpcore/_backends/anyio.py", line 114, in connect_tcp
+    with map_exceptions(exc_map):
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpcore/_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.ConnectError: [Errno -2] Name or service not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/request/_httpxrequest.py", line 276, in do_request
+    res = await self._client.request(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpx/_client.py", line 1574, in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpx/_client.py", line 1661, in send
+    response = await self._send_handling_auth(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpx/_client.py", line 1689, in _send_handling_auth
+    response = await self._send_handling_redirects(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpx/_client.py", line 1726, in _send_handling_redirects
+    response = await self._send_single_request(request)
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpx/_client.py", line 1763, in _send_single_request
+    response = await transport.handle_async_request(request)
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpx/_transports/default.py", line 372, in handle_async_request
+    with map_httpcore_exceptions():
+  File "/usr/lib/python3.10/contextlib.py", line 153, in __exit__
+    self.gen.throw(typ, value, traceback)
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/httpx/_transports/default.py", line 86, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.ConnectError: [Errno -2] Name or service not known
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_updater.py", line 742, in _network_loop_retry
+    if not await do_action():
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_updater.py", line 736, in do_action
+    return action_cb_task.result()
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_updater.py", line 387, in polling_action_cb
+    raise exc
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_updater.py", line 376, in polling_action_cb
+    updates = await self.bot.get_updates(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_extbot.py", line 618, in get_updates
+    updates = await super().get_updates(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/_bot.py", line 541, in decorator
+    result = await func(self, *args, **kwargs)
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/_bot.py", line 4177, in get_updates
+    await self._post(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/_bot.py", line 629, in _post
+    return await self._do_post(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/ext/_extbot.py", line 347, in _do_post
+    return await super()._do_post(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/_bot.py", line 657, in _do_post
+    return await request.post(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/request/_baserequest.py", line 200, in post
+    result = await self._request_wrapper(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/request/_baserequest.py", line 340, in _request_wrapper
+    raise exc
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/request/_baserequest.py", line 330, in _request_wrapper
+    code, payload = await self.do_request(
+  File "/home/mindahun/programs/python/weather_bot/benv/lib/python3.10/site-packages/telegram/request/_httpxrequest.py", line 300, in do_request
+    raise NetworkError(f"httpx.{err.__class__.__name__}: {err}") from err
+telegram.error.NetworkError: httpx.ConnectError: [Errno -2] Name or service not known

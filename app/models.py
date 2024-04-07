@@ -37,15 +37,14 @@ class Question(Base):
     question = mapped_column(Text)
     options = mapped_column(Text)
     ans_index = mapped_column(Integer)
-
     quiz_id = mapped_column(ForeignKey("quizzes.id"))
     quiz = relationship("Quiz", back_populates="questions")
 
-    def __init__(self,question, options, ans_index, quiz=None):
+    def __init__(self,question, options, ans_index, quiz_id):
         self.question = question
         self.options = json.dumps(options)
         self.ans_index = ans_index
-        self.quiz = quiz
+        self.quiz_id = quiz_id
 
     def get_options(self):
         return json.loads(self.options)

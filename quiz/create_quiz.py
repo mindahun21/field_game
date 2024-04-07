@@ -32,7 +32,7 @@ class State(Enum):
 
 @access_db
 async def ask_name(update:Update, context:ContextTypes.DEFAULT_TYPE,db:Session=None):
-    role,_ = db_utils.get_role(update.effective_chat.id,db=db)
+    role,_ = await db_utils.get_role(update.effective_chat.id,db=db)
 
     if role != Role.ADMIN:
         await update.message.reply_text("Restricted only for admins")
@@ -72,7 +72,7 @@ async def get_subject(update:Update,context:ContextTypes.DEFAULT_TYPE,db:Session
 
     await db_utils.add_obj(quiz,db=db)
     await update.message.reply_text(
-        f"QUIZ: {context.user_data["name"]} is successfully created.\nif you want to add questions in the quiz,please Enter First Question\nor if you want to cancel hear use /cancel command."
+        f"QUIZ: {context.user_data['name']} is successfully created.\nif you want to add questions in the quiz,please Enter First Question\nor if you want to cancel hear use /cancel command."
     )
     context.user_data["quiz"]=quiz
 
@@ -94,9 +94,9 @@ async def get_options(update:Update, context:ContextTypes.DEFAULT_TYPE):
 async def get_answer(update:Update, context:ContextTypes.DEFAULT_TYPE,              db:Session=None):
     question = Question(
         question=context.user_data['question'],
-        option=context.user_data['options'],
-        ans_index=context.user_data['ans'],
-        quiz_id=context.user_data["quiz"].id
+        options=context.user_data['options'],
+        ans_index=int(update.message.text),
+        quiz_id=context.user_data["quiz"].id,
     )
     await db_utils.add_obj(question,db=db)
     await update.message.reply_text("question added successfully\nif you wana to stop use /cancel command\nOR enter question to add another question")
@@ -104,7 +104,9 @@ async def get_answer(update:Update, context:ContextTypes.DEFAULT_TYPE,          
     return State.QUESTION
 
 handler = ConversationHandler(
-    entry_points=[CommandHandler("create_quiz",ask_name)],
+    entry_points=[
+        CommandHandler("create_quiz",ask_name)
+        ],
     states={
         State.NAME:[MessageHandler(filters.TEXT,get_name)],
         State.SUBJECT:[MessageHandler(filters.TEXT,get_subject)],
@@ -118,5 +120,5 @@ handler = ConversationHandler(
     ],
 
 )
-print("create quiz registered")
-register_handler(handler)
+# print("create quiz registered")
+# register_handler(handler)

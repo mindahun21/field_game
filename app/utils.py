@@ -34,4 +34,5 @@ async def cancel_conversation(update:Update, context:ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
         "now you are returned to the normal bot operations!"
     )
+    context.user_data.clear()
     return ConversationHandler.END
