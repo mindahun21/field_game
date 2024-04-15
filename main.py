@@ -5,10 +5,7 @@ from app.db import engine
 from app.models import Base
 from app.handlers import get_handlers, register_handler
 from app.errors import error_handler
-
-from quiz.add_question import handler as add_question_handler
-from quiz.create_quiz import handler as create_handler_handler
-from quiz.take_quiz import handler as take_quiz_handler
+import quiz
 
 from common.callback_handler import handle_callback
 
@@ -26,18 +23,12 @@ if __name__ == '__main__':
     API_KEY = config["API_KEY"]
     print("BOT started.")
 
-    register_handler(add_question_handler)
-    register_handler(create_handler_handler)
-    register_handler(take_quiz_handler)
-
     application =(
         ApplicationBuilder()
         .token(API_KEY)
         .concurrent_updates(True)
         .build()
     )
-
-    # print(get_handlers())
 
     application.add_handlers(get_handlers())
     application.add_error_handler(error_handler)

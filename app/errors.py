@@ -13,14 +13,18 @@ logger= logging.getLogger(__name__)
 
 async def error_handler(update:Update,context: ContextTypes.DEFAULT_TYPE):
     if isinstance(context.error ,Forbidden):
-        await context.bot.send_message(update.effective_chat.id, "Sorry, for sad news \n the user has blocked the bot")
-        return
+        chat_id = update.effective_chat.id if update.effective_chat else None
+        if chat_id:
+            await context.bot.send_message(chat_id, "Sorry, for sad news \n the user has blocked the bot")        
+            return
     
     logger.error("An exception has occurred", exc_info=context.error)
-    await context.bot.send_message(
-        update.effective_chat.id,
-        "We are extremely sorry but an error occurred on our side. Please redo your recent action.\n\nWe are working on fixing this issue.",
-    )
+    chat_id = update.effective_chat.id if update.effective_chat else None
+    if chat_id:
+        await context.bot.send_message(
+            chat_id,
+            "We are extremely sorry but an error occurred on our side. Please redo your recent action.\n\nWe are working on fixing this issue.",
+        )
 
     with session_scope() as db:
         admins = await get_entries(User,db=db,role="admin")

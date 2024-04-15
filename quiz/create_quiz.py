@@ -91,7 +91,7 @@ async def get_options(update:Update, context:ContextTypes.DEFAULT_TYPE):
     return State.ANSWER
 
 @access_db
-async def get_answer(update:Update, context:ContextTypes.DEFAULT_TYPE,              db:Session=None):
+async def get_answer(update:Update, context:ContextTypes.DEFAULT_TYPE,db:Session=None):
     question = Question(
         question=context.user_data['question'],
         options=context.user_data['options'],
@@ -108,17 +108,16 @@ handler = ConversationHandler(
         CommandHandler("create_quiz",ask_name)
         ],
     states={
-        State.NAME:[MessageHandler(filters.TEXT,get_name)],
-        State.SUBJECT:[MessageHandler(filters.TEXT,get_subject)],
-        State.QUESTION:[MessageHandler(filters.TEXT,get_question)],
-        State.OPTIONS:[MessageHandler(filters.TEXT,get_options)],
-        State.ANSWER:[MessageHandler(filters.TEXT,get_answer)],
+        State.NAME:[MessageHandler(filters.TEXT & (~filters.COMMAND),get_name)],
+        State.SUBJECT:[MessageHandler(filters.TEXT & (~filters.COMMAND),get_subject)],
+        State.QUESTION:[MessageHandler(filters.TEXT & (~filters.COMMAND),get_question)],
+        State.OPTIONS:[MessageHandler(filters.TEXT & (~filters.COMMAND),get_options)],
+        State.ANSWER:[MessageHandler(filters.Regex(r'^\d+$') & (~filters.COMMAND),get_answer)],
     },
     fallbacks=[
         CommandHandler("cancel",cancel_conversation),
-        MessageHandler(filters.ALL,invalid_message),
+        MessageHandler(filters.TEXT & (~filters.COMMAND),invalid_message),
     ],
 
 )
-# print("create quiz registered")
-# register_handler(handler)
+register_handler(handler)
