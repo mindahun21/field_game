@@ -14,7 +14,6 @@ Installation
 
    .. code-block:: shell
 
-      touch .env
       echo "API_KEY='your bot token'" > .env
 
 Usage
