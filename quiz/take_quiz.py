@@ -26,7 +26,7 @@ from telegram import (
 
 class State(Enum):
     CHOOSE_QUIZ=1
-    DISPLAY_QUIZ=2
+    # DISPLAY_QUIZ=2
 
 quiz=None
 questions =[]
