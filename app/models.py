@@ -21,7 +21,6 @@ class User(Base):
     role = mapped_column(Text, default="user")
     quizzes = relationship("Quiz",back_populates="creator")
 
-
 class Quiz(Base):
     __tablename__ = 'quizzes'
     id = mapped_column(Integer, primary_key=True)

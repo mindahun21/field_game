@@ -57,4 +57,4 @@ async def start(update:Update, context:ContextTypes.DEFAULT_TYPE,db:Session=None
 
 
 handler = CommandHandler("start",start)
-register_handler(handler)
+# register_handler(handler)

@@ -27,5 +27,5 @@ async def help_handler(update:Update, context=ContextTypes.DEFAULT_TYPE, db=None
         await update.message.reply_text(msg)
 
 handler = CommandHandler("help",help_handler)
-register_handler(handler)
+# register_handler(handler)
 
