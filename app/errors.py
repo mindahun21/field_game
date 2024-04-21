@@ -12,14 +12,17 @@ from .models import User
 logger= logging.getLogger(__name__)
 
 async def error_handler(update:Update,context: ContextTypes.DEFAULT_TYPE):
+    if update is not None and update.effective_chat is not None:
+        chat_id = update.effective_chat.id
+    else:
+        chat_id = None
+
     if isinstance(context.error ,Forbidden):
-        chat_id = update.effective_chat.id if update.effective_chat else None
         if chat_id:
             await context.bot.send_message(chat_id, "Sorry, for sad news \n the user has blocked the bot")        
             return
     
     logger.error("An exception has occurred", exc_info=context.error)
-    chat_id = update.effective_chat.id if update.effective_chat else None
     if chat_id:
         await context.bot.send_message(
             chat_id,

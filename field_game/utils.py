@@ -22,6 +22,7 @@ def changer (ans, length):
     try:
         temp = list(ans.strip())
         if len(temp) != length:
+            print("length is not wright")
             return False
         return temp
     except:
@@ -32,17 +33,21 @@ def unique(lis, length):
 
 def check_ans(user_ans, correct_ans):
     position = 0
-    ans = changer(user_ans, len(user_ans))
+    ans = changer(user_ans, len(correct_ans))
 
-    if not (ans) or not unique(ans):
-        return wrong_msg
+    if not (ans) or not unique(ans,len(correct_ans)):
+        print("not unique.... answer")
+        return "wrong answer❗❗ the answer is not contain all answers or any thing repeated answer"
     
     for i in range(len(correct_ans)):
         if ans[i] == correct_ans[i]:
             position += 1
     
     if position == len(user_ans):
+        print("correct answer")
         return "correct"
+    
+    print("position is ......")
     
     return f"{position}"
 

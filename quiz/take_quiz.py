@@ -148,5 +148,5 @@ handler = ConversationHandler(
 )
 
 poll_handler = PollAnswerHandler(display_questions)
-register_handler(poll_handler)
-register_handler(handler)
+# register_handler(poll_handler)
+# register_handler(handler)

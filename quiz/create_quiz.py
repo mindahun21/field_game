@@ -120,4 +120,4 @@ handler = ConversationHandler(
     ],
 
 )
-register_handler(handler)
+# register_handler(handler)
