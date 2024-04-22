@@ -1,6 +1,5 @@
 from .data import *
 
-
 async def is_admin(username):
     for user in admins:
         if user["username"] == username:
@@ -12,7 +11,7 @@ def check_code(code=""):
     if code in codes:
         if code[5:8] == 'win':
             codes.remove(code)
-            return 100
+            return 200
         codes.remove(code)
         return int(code[4])
     else:
@@ -51,3 +50,15 @@ def check_ans(user_ans, correct_ans):
     
     return f"{position}"
 
+async def winMsg(update):
+    global winnum
+    if winnum in range(1,4):
+        await update.message.reply_text(f"\n\n\n🏆🏆🏆congradulations🏆🏆🏆 \n YOUR TEAM FINISHED {winnum}\n\n")
+    else:
+        await update.message.reply_text(f"\n\n\nYOUR TEAM FINISHED  #{winnum}\n\n")
+    
+    winnum+=1
+
+async def sendVoice(context, chat_id,voice_file:str):
+    voice = open(voice_file,'rb')
+    await context.bot.send_voice(chat_id=chat_id,voice=voice)
