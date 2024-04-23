@@ -21,7 +21,6 @@ def changer (ans, length):
     try:
         temp = list(ans.strip())
         if len(temp) != length:
-            print("length is not wright")
             return False
         return temp
     except:
@@ -35,7 +34,6 @@ def check_ans(user_ans, correct_ans):
     ans = changer(user_ans, len(correct_ans))
 
     if not (ans) or not unique(ans,len(correct_ans)):
-        print("not unique.... answer")
         return "wrong answer❗❗ the answer is not contain all answers or any thing repeated answer"
     
     for i in range(len(correct_ans)):
@@ -43,10 +41,7 @@ def check_ans(user_ans, correct_ans):
             position += 1
     
     if position == len(user_ans):
-        print("correct answer")
         return "correct"
-    
-    print("position is ......")
     
     return f"{position}"
 
@@ -59,6 +54,14 @@ async def winMsg(update):
     
     winnum+=1
 
-async def sendVoice(context, chat_id,voice_file:str):
-    voice = open(voice_file,'rb')
-    await context.bot.send_voice(chat_id=chat_id,voice=voice)
+async def sendGame4(update, context, chat_id):
+    global game4_voice1, game4_voice2
+    await update.message.reply_text(games.get("4"))
+    voice1 = open(game4_voice1,'rb')
+    await context.bot.send_voice(chat_id=chat_id,voice=voice1,caption="ሕዝቡ እንዲህ ይበል : \"እግዚኦ ተሠሃለነ\" ይበሉ")
+    await update.message.reply_text("ካህን(ቄስ): \"ሰላም ለኲልክሙ\" ሲሉ")
+    voice2 = open(game4_voice2,'rb')
+    await context.bot.send_voice(chat_id=chat_id,voice=voice2,caption="ህዝቡ እንዲህ ይበል: \"ምስለ መንፈስከ\" ይበሉ")
+
+    await update.message.reply_text(redirect_puzzle.get("4"))
+

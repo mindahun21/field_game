@@ -26,7 +26,7 @@ def callback_handler(handler):
 
 async def invalid_message(update:Update,context:ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
-        "please send appropriate response, if you want to return to normal bot operations, please use /cancel command."
+        "please send appropriate response, if you want to stop game, please use /cancel command."
     )
 
 

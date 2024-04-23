@@ -29,11 +29,7 @@ from app.utils import cancel_conversation,invalid_message
 class State(Enum):
     DISTRIBUTER=0
     FIRST_GAME=1
-    SECOND_GAME=2
-    THIRD_GAME=3
-    FOURTH_GAME=4
-    # FIFTH_GAME=5
-    # NEXT_GAME=6
+    
 
 
 @access_db
@@ -75,9 +71,9 @@ async def start_game(update:Update,context:ContextTypes.DEFAULT_TYPE,db:Session=
 
 async def distributer(update:Update,context:ContextTypes.DEFAULT_TYPE):
     global winnum, group_divider
-    code = update.message.text
+    if update.message is not None:
+        code = update.message.text
     status = check_code(code)
-    print("distrubuter invocked...",status)
 
     if status == 200:
         await winMsg(update)
@@ -85,22 +81,23 @@ async def distributer(update:Update,context:ContextTypes.DEFAULT_TYPE):
 
         
     elif status == 404:
-        print("404 status...")
         await update.message.reply_text(wrong_msg)
     elif status in range(1,6):
-        print("in range five...")
         question = games.get(str(status),False)
-        await update.message.reply_text(f"{question}")
+        if status ==4:
+            await sendGame4(update,context,update.message.chat_id)
+        else:
+            await update.message.reply_text(f"{question}")
         if status == 2:
             await context.bot.send_message(
             chat_id=update.message.chat_id,
             text=f"{redirect_puzzle.get('2')[group_divider % 2]}"
             )
             group_divider+=1
-        if status==2 or status==5:
-            return State.DISTRIBUTER
-        print("returned to status...")
-        return State(status)
+        if status== 1:
+            return State.FIRST_GAME
+        
+        return State.DISTRIBUTER
     
 # ANS:ሐቀአሠኘሸቸሀመተረሰነበየለ
 async def first_game(update:Update,context:ContextTypes.DEFAULT_TYPE):
@@ -114,7 +111,6 @@ async def first_game(update:Update,context:ContextTypes.DEFAULT_TYPE):
 
     if user_ans[:3].lower() == "ans":
         res = check_ans(user_ans[4:],correct_ans)
-        print(res)
         if res == "correct":
             choose =games.get("11")
             await update.message.reply_text(
@@ -144,43 +140,42 @@ async def first_game(update:Update,context:ContextTypes.DEFAULT_TYPE):
         return State.DISTRIBUTER
     else:
         await update.message.reply_text("🤔 ምን ?")
+        return State.FIRST_GAME
         
 
 # ANS:ሐቀሠሸሀመረሰበለ
-async def third_game(update:Update,context:ContextTypes.DEFAULT_TYPE):
-    correct_ans=["ሐ","ቀ","ሠ","ሸ","ሀ","መ","ረ","ሰ","በ","ለ"]
-    user_ans=update.message.text
-    global game4_voice
-    if "tryThird" not in context.user_data:
-        context.user_data["tryThird"] = 0
+# async def third_game(update:Update,context:ContextTypes.DEFAULT_TYPE):
+#     correct_ans=["ሐ","ቀ","ሠ","ሸ","ሀ","መ","ረ","ሰ","በ","ለ"]
+#     user_ans=update.message.text
+#     global game4_voice
+#     if "tryThird" not in context.user_data:
+#         context.user_data["tryThird"] = 0
 
-    if user_ans[:3].lower() == "ans":
-        res = check_ans(user_ans[4:],correct_ans)
-        if res == "correct" or not res.startswith("wrong") and int(res)>7:
-            await update.message.reply_text(
-                f"👏👏👏WELL DONE👏👏👏\n\n your team managed to get the correct answer\n\n"
-                )
-            await sendVoice(context,update.message.chat_id,game4_voice)
-            await update.message.reply_text(games.get("4"))
-            return State.DISTRIBUTER
+#     if user_ans[:3].lower() == "ans":
+#         res = check_ans(user_ans[4:],correct_ans)
+#         if res == "correct" or not res.startswith("wrong") and int(res)>7:
+#             await update.message.reply_text(
+#                 f"👏👏👏WELL DONE👏👏👏\n\n your team managed to get the correct answer\n\n"
+#                 )
+#             await sendGame4(update,context,update.message.chat_id,)
+#             return State.DISTRIBUTER
         
-        elif context.user_data["tryThird"] == 1:
-            await update.message.reply_text(
-                "your team needs to wait for ⏳ 5 mins because your team can\'t get the correct answer"
-            )
-            await asyncio.sleep(300)
-            await sendVoice(context,update.message.chat_id,game4_voice)
-            await update.message.reply_text(games.get("4"))
-
-            return State.DISTRIBUTER
+#         elif context.user_data["tryThird"] == 1:
+#             await update.message.reply_text(
+#                 "your team needs to wait for ⏳ 5 mins because your team can\'t get the correct answer"
+#             )
+#             await asyncio.sleep(300)
+#             await sendGame4(update,context,update.message.chat_id,)
+#             return State.DISTRIBUTER
         
-        else:
-            await update.message.reply_text(f"Correct: {res}\n\n❗❗your team have one chance use it if not your teem have ⏳5 min delay penality❗❗\n enter the answer again.")
-            context.user_data["tryThird"]+=1
-            return State.THIRD_GAME
+#         else:
+#             await update.message.reply_text(f"Correct: {res}\n\n❗❗your team have one chance use it if not your teem have ⏳5 min delay penality❗❗\n enter the answer again.")
+#             context.user_data["tryThird"]+=1
+#             return State.THIRD_GAME
         
-    else:
-        await update.message.reply_text("🤔 ምን ?")
+#     else:
+#         await update.message.reply_text("🤔 ምን ?")
+#         return State.THIRD_GAME
      
 
 handler = ConversationHandler(
@@ -188,7 +183,6 @@ handler = ConversationHandler(
     states={
         State.DISTRIBUTER:[MessageHandler(filters.TEXT & (~filters.COMMAND),distributer)],
         State.FIRST_GAME:[MessageHandler(filters.TEXT & (~filters.COMMAND),first_game)],
-        State.THIRD_GAME:[MessageHandler(filters.TEXT & (~filters.COMMAND),third_game)],
     },
     fallbacks=[
         CommandHandler("cancel",cancel_conversation),
