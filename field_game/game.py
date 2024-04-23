@@ -142,42 +142,6 @@ async def first_game(update:Update,context:ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("🤔 ምን ?")
         return State.FIRST_GAME
         
-
-# ANS:ሐቀሠሸሀመረሰበለ
-# async def third_game(update:Update,context:ContextTypes.DEFAULT_TYPE):
-#     correct_ans=["ሐ","ቀ","ሠ","ሸ","ሀ","መ","ረ","ሰ","በ","ለ"]
-#     user_ans=update.message.text
-#     global game4_voice
-#     if "tryThird" not in context.user_data:
-#         context.user_data["tryThird"] = 0
-
-#     if user_ans[:3].lower() == "ans":
-#         res = check_ans(user_ans[4:],correct_ans)
-#         if res == "correct" or not res.startswith("wrong") and int(res)>7:
-#             await update.message.reply_text(
-#                 f"👏👏👏WELL DONE👏👏👏\n\n your team managed to get the correct answer\n\n"
-#                 )
-#             await sendGame4(update,context,update.message.chat_id,)
-#             return State.DISTRIBUTER
-        
-#         elif context.user_data["tryThird"] == 1:
-#             await update.message.reply_text(
-#                 "your team needs to wait for ⏳ 5 mins because your team can\'t get the correct answer"
-#             )
-#             await asyncio.sleep(300)
-#             await sendGame4(update,context,update.message.chat_id,)
-#             return State.DISTRIBUTER
-        
-#         else:
-#             await update.message.reply_text(f"Correct: {res}\n\n❗❗your team have one chance use it if not your teem have ⏳5 min delay penality❗❗\n enter the answer again.")
-#             context.user_data["tryThird"]+=1
-#             return State.THIRD_GAME
-        
-#     else:
-#         await update.message.reply_text("🤔 ምን ?")
-#         return State.THIRD_GAME
-     
-
 handler = ConversationHandler(
     entry_points=[CommandHandler("start",start_game)],
     states={
