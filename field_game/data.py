@@ -10,7 +10,7 @@ ruls = "Game Rules:\n\
 ❗❗❗❗ ATTENTION ❗❗❗❗\n\n\
 1. Running within the university compound is strictly prohibited. This constitutes a severe violation as it draws attention from the community, security personnel, staff, and other students, potentially exposing our church to opposition. Any team found running within the university compound will be expelled from the game. However, running outside the compound is not prohibited even is considered a violation of the law not to run out side the university compund 😉.\n\
 \n\n2. In the event of multiple teams converging during a game, each team is required to wait its turn before proceeding.\n\
-\n\n3. A prize will be awarded to the winning team. The losing team, during the award ceremony, is required to stand and sing one of the penance songs performed during the final game.\n\nEnter first game code"
+\n\n3. A prize will be awarded to the winning team. \n\nEnter first game code"
 
 codes = y = ['Game1-74237', 'Game1-56499', 'Game1-17804', 'Game1-61304', 'Game1-77322', 'Game1-42059', 'Game2-10805', 'Game2-72309', 'Game2-88244',
   'Game2-15809','Game2-48720', 'Game2-58369', 'Game3-46666', 'Game3-31576', 'Game3-28012', 'Game3-87122', 'Game3-86540', 'Game3-21139',
@@ -44,10 +44,12 @@ group_divider =0
 
 """
 Game1-56499
+ሐቀአሠኘሸቸሀመተረሰነበየለ
+ANS:ሐቀአሠኘሸቸሀመተረሰየለነበ
 ANS:ሐቀአሠኘሸቸሀመተረሰነበየለ
 Game2-72309
 Game3-31576
-ANS:ሐቀሠሸሀመረሰበለ
+Game4-67890
 Game5-23380
 Game-win-77752
 """

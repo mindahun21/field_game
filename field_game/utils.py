@@ -48,7 +48,7 @@ def check_ans(user_ans, correct_ans):
 async def winMsg(update):
     global winnum
     if winnum in range(1,4):
-        await update.message.reply_text(f"\n\n\n🏆🏆🏆congradulations🏆🏆🏆 \n YOUR TEAM FINISHED {winnum}\n\n")
+        await update.message.reply_text(f"\n\n\n🏆🏆🏆     CONGRADULATIONS     🏆🏆🏆 \n YOUR TEAM FINISHED     {winnum}\n\n")
     else:
         await update.message.reply_text(f"\n\n\nYOUR TEAM FINISHED  #{winnum}\n\n")
     

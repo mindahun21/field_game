@@ -118,7 +118,7 @@ async def first_game(update:Update,context:ContextTypes.DEFAULT_TYPE):
                 )
         elif context.user_data["tryFirst"] == 1:
             await update.message.reply_text(
-                "your team needs to wait for ⏳ 5 mins because your team can\'t get the correct order"
+                "🤷🤷 I AM SORRY 🤷🤷 Your team is required to wait for a duration of ⏳ 5 minutes due to the inability to obtain the correct answer."
             )
             await asyncio.sleep(300)
         else:
@@ -128,8 +128,8 @@ async def first_game(update:Update,context:ContextTypes.DEFAULT_TYPE):
                 await update.message.reply_text(f"Order: {res}")
             
             await update.message.reply_text(
-                f"❗❗your team have one chance use it if not your teem have ⏳5 min delay penality❗❗\n enter the answer again."
-            )
+                "\n❗❗ Your team has one opportunity to utilize it.❗❗\nIf your team is unable to provide the correct answer at this time,a delay penalty of ⏳5 minutes will be incurred.\n❗❗ Please consider this carefully. ❗❗\nKindly enter the answer once again."   
+                )
             
             context.user_data["tryFirst"]+=1
             return State.FIRST_GAME
@@ -139,7 +139,7 @@ async def first_game(update:Update,context:ContextTypes.DEFAULT_TYPE):
             )
         return State.DISTRIBUTER
     else:
-        await update.message.reply_text("🤔 ምን ?")
+        await update.message.reply_text("🤔 ምን ?\n enter the answer in this format  (ANS:ሀለሐመሠ)")
         return State.FIRST_GAME
         
 handler = ConversationHandler(
