@@ -1,4 +1,3 @@
 /benv
-.env
 *.log
 *__pycache__/
