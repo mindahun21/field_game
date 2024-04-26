@@ -5,7 +5,7 @@ from app.db import engine
 from app.models import Base
 from app.handlers import get_handlers, register_handler
 from app.errors import error_handler
-import field_game
+import poll_game
 
 from common.callback_handler import handle_callback
 

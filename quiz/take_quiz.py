@@ -26,7 +26,6 @@ from telegram import (
 
 class State(Enum):
     CHOOSE_QUIZ=1
-    # DISPLAY_QUIZ=2
 
 quiz=None
 questions =[]
@@ -139,7 +138,6 @@ handler = ConversationHandler(
     entry_points=[CommandHandler("take_quiz",choose_quiz)],
     states={
         State.CHOOSE_QUIZ:[MessageHandler(filters.TEXT,choose_quiz_input)],
-        # State.DISPLAY_QUIZ:[PollAnswerHandler(display_questions)]
     },
     fallbacks=[
         CommandHandler("cancel",cancel_conversation),
@@ -148,5 +146,5 @@ handler = ConversationHandler(
 )
 
 poll_handler = PollAnswerHandler(display_questions)
-# register_handler(poll_handler)
-# register_handler(handler)
+register_handler(poll_handler)
+register_handler(handler)

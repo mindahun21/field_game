@@ -1,5 +1,5 @@
 from sqlalchemy.orm import DeclarativeBase, mapped_column, relationship
-from sqlalchemy import JSON, Integer, String, Text, ForeignKey
+from sqlalchemy import JSON, Integer, String, Text, ForeignKey, DateTime
 from enum import Enum as BaseEnum
 import json
 
@@ -18,8 +18,10 @@ class User(Base):
     id = mapped_column(Integer, primary_key=True)
     username = mapped_column(Text)
     chat_id = mapped_column(String(255), unique=True, nullable=True)
+    user_id = mapped_column(Integer, unique=True, nullable=False)  # Store the Telegram user ID
     role = mapped_column(Text, default="user")
     quizzes = relationship("Quiz",back_populates="creator")
+    poll_rank = relationship('PollRank',uselist=False, back_populates="user",cascade="all, delete-orphan")
 
 class Quiz(Base):
     __tablename__ = 'quizzes'
@@ -47,3 +49,13 @@ class Question(Base):
 
     def get_options(self):
         return json.loads(self.options)
+    
+class PollRank(Base):
+    __tablename__ = 'poll_rank'
+    id = mapped_column(Integer, primary_key=True)
+    user_id = mapped_column(Integer, ForeignKey('users.id'))
+    user = relationship("User", back_populates="poll_rank")
+    score = mapped_column(Integer, nullable=True)
+    duration =mapped_column(Integer, nullable=True)
+    end_time = mapped_column(DateTime, nullable=True)
+    rank = mapped_column(Integer, nullable=True)

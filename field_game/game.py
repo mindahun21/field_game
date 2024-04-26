@@ -153,5 +153,5 @@ handler = ConversationHandler(
         MessageHandler(filters.ALL,invalid_message),
     ],
 )
-register_handler(handler)
+# register_handler(handler)
 

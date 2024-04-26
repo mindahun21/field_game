@@ -23,6 +23,16 @@ async def delete_obj(obj,db=None):
     db.delete(obj)
     db.commit()
 
+async def delete_all_rows(model, db=None):
+    if db is None:
+        raise ValueError("You didn't pass a database connection to the function")
+
+    rows = db.query(model).all()
+    for row in rows:
+        db.delete(row)
+
+    db.commit()
+
 async def set_val(obj,db=None,**kwargs):
     if db is None:
         raise ValueError("you didn't pass database connection to the function")
