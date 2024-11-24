@@ -84,15 +84,15 @@ async def get_entries(obj,db=None,**filters)-> Union[List[T],Literal[False]]:
     
     return False
 
-async def get_role(chat_id:int,db=None) -> Tuple[Role,Union[User, None]]:
+async def get_role(user_id:int,db=None) -> Tuple[Role,Union[User, None]]:
     if db is None:
         raise ValueError("you didn't pass database connection to the function")
     
-    user = await get_entry(User,db=db,chat_id=chat_id)
+    user = await get_entry(User,db=db,user_id=user_id)
 
-    if user and user.role == "user":
+    if user and user.role == Role.USER:
         return (Role.USER,user)
-    elif user and user.role == "admin":
+    elif user and user.role == Role.ADMIN:
         return (Role.ADMIN,user)
     
     return (Role.NONE,None)

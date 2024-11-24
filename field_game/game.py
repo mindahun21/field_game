@@ -1,5 +1,3 @@
-import asyncio
-from asyncore import poll
 from enum import Enum
 from sqlalchemy.orm import Session
 
@@ -10,14 +8,12 @@ from telegram.ext import(
     ConversationHandler,
     CommandHandler,
     MessageHandler,
-    PollAnswerHandler,
     ContextTypes,
     filters,
 )
 
 from telegram import(
     Update,
-    Poll,
 )
 
 from app import db_utils
@@ -30,128 +26,169 @@ class State(Enum):
     DISTRIBUTER=0
     FIRST_GAME=1
     
+game = Game()
 
 
 @access_db
 async def start_game(update:Update,context:ContextTypes.DEFAULT_TYPE,db:Session=None):
-    role, _ = await db_utils.get_role(update.effective_chat.id,db=db)
+    role, _ = await db_utils.get_role(update.effective_user.id,db=db)
     if role == Role.USER:        
-        await update.message.reply_text(
-            f"{ruls}"
-        )
-        return State.DISTRIBUTER
+      await update.message.reply_text(
+          f"{game.ruls}"
+      )
+      
     elif role == Role.ADMIN:
-        await update.message.reply_text(
-            f"hello, ADMIN {update.effective_chat.username}:\nyou are admin"
-        )
-        return State.DISTRIBUTER
-    elif admin:= await is_admin(update.message.from_user.username):
-        user = User(
-            username=admin["username"],
-            chat_id=update.effective_chat.id,
-            role="admin",
-        )
-        await db_utils.add_obj(user,db=db)
-        await update.message.reply_text(
-            f"hello, ADMIN {update.effective_chat.username}:\nyou are admin"
-        )
-        return State.DISTRIBUTER
+      await context.bot.send_message(
+        update.effective_user.id,
+        f"<pre>hello, {update.effective_user.username}:\nyou are admin</pre>",
+        parse_mode="HTML"
+      )
+      return
+      
+      
+    elif admin:= await game.is_admin(update.effective_user.username):
+      user = User(
+        username=admin["username"],
+        user_id=update.effective_user.id,
+        role=Role.ADMIN
+      )
+      await db_utils.add_obj(user,db=db)
+      await context.bot.send_message(
+        update.effective_user.id,
+        f"<pre>hello, {update.effective_user.username}:\nyou are admin</pre>",
+        parse_mode="HTML"
+      )
+      return
+      
+      
     elif role == Role.NONE:
-        user = User(
-            username=update.message.from_user.username,
-            chat_id=update.effective_chat.id,
-            role="user",
-        )
+      user = User(
+          username=update.effective_user.username,
+          user_id=update.effective_user.id,
+          role=Role.USER
+      )
 
-        await db_utils.add_obj(user,db=db)
-        await update.message.reply_text(
-            f"{ruls}"
-        )
-        return State.DISTRIBUTER
+      await db_utils.add_obj(user,db=db)
+      await update.message.reply_text(
+          f"{game.ruls}"
+      )
+    await update.message.reply_text(game.games["1"])
+    return State.DISTRIBUTER
 
-async def distributer(update:Update,context:ContextTypes.DEFAULT_TYPE):
-    global winnum, group_divider
-    if update.message is not None:
-        code = update.message.text
-    status = check_code(code)
 
-    if status == 200:
-        await winMsg(update)
-        return ConversationHandler.END
+@access_db
+async def distributer(update:Update,context:ContextTypes.DEFAULT_TYPE, db:Session=None):
+  if update.message is not None:  # how this can be none
+      code = update.message.text
 
-        
-    elif status == 404:
-        await update.message.reply_text(wrong_msg)
-    elif status in range(1,6):
-        question = games.get(str(status),False)
-        if status ==4:
-            await sendGame4(update,context,update.message.chat_id)
-        else:
-            await update.message.reply_text(f"{question}")
-        if status == 2:
-            await context.bot.send_message(
-            chat_id=update.message.chat_id,
-            text=f"{redirect_puzzle.get('2')[group_divider % 2]}"
-            )
-            group_divider+=1
-        if status== 1:
-            return State.FIRST_GAME
-        
-        return State.DISTRIBUTER
+  status = game.check_code(code)
+  user = await db_utils.get_entry(User, db=db,user_id = update.effective_user.id)
+
+  if status == 404:
+    await update.message.reply_text(game.wrong_msg)
+    return State.DISTRIBUTER
+  
+
+  if status == 200:
+    await context.bot.send_message(
+      update.effective_user.id,
+      f"your team finished the game \nplease wait to find out your rank",
+      parse_mode="HTML"
+    )
+    game.finishers.append(user.user_id)
+    return ConversationHandler.END
+
+  elif status in range(2,6):
+    question = game.games.get(str(status),False)
+    puzzle = game.redirect_puzzle.get(str(status),False)
+    await update.message.reply_text(f"{question}")
+    await update.message.reply_text(f"{puzzle}")
+
+  return State.DISTRIBUTER
+
+@access_db
+async def reset_game(update: Update, context: ContextTypes.DEFAULT_TYPE, db:Session =None):
+  role, _ = await db_utils.get_role(update.effective_user.id,db=db)
+  
+  
+  if role == Role.USER:
+    await update.message.reply_text(
+       "you can't use this command b/c you are a user"
+    )
+    return
+  elif role == Role.NONE:
+    await update.message.reply_text(
+       "you are not registered use /start to register"
+    )
+    return
+     
+
+  await db_utils.delete_all_rows(User, db=db)
+  user = User(
+    username="Mindahun21",
+    user_id=update.effective_user.id,
+    role=Role.ADMIN
+  )
+  await db_utils.add_obj(user,db=db)
     
-# ANS:ሐቀአሠኘሸቸሀመተረሰነበየለ
-async def first_game(update:Update,context:ContextTypes.DEFAULT_TYPE):
-    correct_ans=["ሐ","ቀ","አ","ሠ","ኘ","ሸ","ቸ","ሀ","መ","ተ","ረ","ሰ","ነ","በ","የ","ለ"]
-    user_ans=update.message.text
-    chat_id = update.message.chat_id
-    global group_divider
+  game.reset()
 
-    if "tryFirst" not in context.user_data:
-        context.user_data["tryFirst"] = 0
+  await context.bot.send_message(
+     update.effective_user.id,
+     text="the game is successfully reseted"
+  )
 
-    if user_ans[:3].lower() == "ans":
-        res = check_ans(user_ans[4:],correct_ans)
-        if res == "correct":
-            choose =games.get("11")
-            await update.message.reply_text(
-                f"👏👏👏WELL DONE👏👏👏\n\n your team managed to get the correct oreder\n\n"
-                )
-        elif context.user_data["tryFirst"] == 1:
-            await update.message.reply_text(
-                "🤷🤷 I AM SORRY 🤷🤷 Your team is required to wait for a duration of ⏳ 5 minutes due to the inability to obtain the correct answer."
-            )
-            await asyncio.sleep(300)
-        else:
-            if res.startswith("wrong"):
-                await update.message.reply_text(f"{res}")
-            else:
-                await update.message.reply_text(f"Order: {res}")
-            
-            await update.message.reply_text(
-                "\n❗❗ Your team has one opportunity to utilize it.❗❗\nIf your team is unable to provide the correct answer at this time,a delay penalty of ⏳5 minutes will be incurred.\n❗❗ Please consider this carefully. ❗❗\nKindly enter the answer once again."   
-                )
-            
-            context.user_data["tryFirst"]+=1
-            return State.FIRST_GAME
-        
-        await update.message.reply_text(
-                f"{choose}"
-            )
-        return State.DISTRIBUTER
-    else:
-        await update.message.reply_text("🤔 ምን ?\n enter the answer in this format  (ANS:ሀለሐመሠ)")
-        return State.FIRST_GAME
-        
+@access_db
+async def show_result(update: Update, context: ContextTypes.DEFAULT_TYPE, db:Session =None):
+  role, _ = await db_utils.get_role(update.effective_user.id,db=db)
+  if role == Role.USER:
+    await update.message.reply_text(
+       "you can't use this command b/c you are a user"
+    )
+    return
+  elif role == Role.NONE:
+    await update.message.reply_text(
+      "you are not registered use /start to register"
+    )
+    return
+  
+
+  users = await db_utils.get_entries(User,db=db,role=Role.USER)
+  adminMessage = F"The Winners are:\n<pre>"
+  
+  for index, user_id in enumerate(game.finishers):
+    matched_user = next((user for user in users if user.user_id == user_id), None)
+    if matched_user:
+        adminMessage += f"{index+1}. @{matched_user.username or 'no username'}\n"
+
+  adminMessage += "</pre>"
+  admin = await db_utils.get_entry(User,db=db,role=Role.ADMIN)
+  await context.bot.send_message(
+     admin.user_id,
+     text=adminMessage,
+     parse_mode="HTML"
+  )
+  formatted_finishers = "\n".join(str(finisher) for finisher in game.finishers)
+  await context.bot.send_message(
+    admin.user_id,
+    text=f"finishers are:\n{formatted_finishers}"
+  )
+   
 handler = ConversationHandler(
     entry_points=[CommandHandler("start",start_game)],
     states={
         State.DISTRIBUTER:[MessageHandler(filters.TEXT & (~filters.COMMAND),distributer)],
-        State.FIRST_GAME:[MessageHandler(filters.TEXT & (~filters.COMMAND),first_game)],
     },
     fallbacks=[
         CommandHandler("cancel",cancel_conversation),
         MessageHandler(filters.ALL,invalid_message),
     ],
 )
-# register_handler(handler)
+
+
+handler1  = CommandHandler("result",show_result)
+handler2 = CommandHandler("reset",reset_game)
+register_handler(handler1)
+register_handler(handler2)
+register_handler(handler)
 

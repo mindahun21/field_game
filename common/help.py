@@ -11,7 +11,7 @@ from telegram.ext import ContextTypes, CommandHandler
 @access_db
 async def help_handler(update:Update, context=ContextTypes.DEFAULT_TYPE, db=None):
 
-    role,_ =await get_role(chat_id=update.effective_chat.id, db=db)
+    role,_ =await get_role(user_id=update.effective_user.id, db=db)
 
     msg =None
 

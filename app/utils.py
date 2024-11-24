@@ -14,7 +14,7 @@ def callback_handler(handler):
             error=e
         
         await context.bot.delete_message(
-            update.effective_chat.id,update.callback_query.message.id
+            update.effective_user.id,update.callback_query.message.id
         )
 
         if error:
