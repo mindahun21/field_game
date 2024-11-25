@@ -36,6 +36,9 @@ async def start_game(update:Update,context:ContextTypes.DEFAULT_TYPE,db:Session=
       await update.message.reply_text(
           f"{game.ruls}"
       )
+      await update.message.reply_text(
+        "Enter the first game code to start. If you don't have it, please reach out to the game admins."
+      )
       
     elif role == Role.ADMIN:
       await context.bot.send_message(
@@ -72,7 +75,10 @@ async def start_game(update:Update,context:ContextTypes.DEFAULT_TYPE,db:Session=
       await update.message.reply_text(
           f"{game.ruls}"
       )
-    await update.message.reply_text(game.games["1"])
+      await update.message.reply_text(
+        "Enter the first game code to start. If you don't have it, please reach out to the game admins."
+      )
+
     return State.DISTRIBUTER
 
 
@@ -98,10 +104,12 @@ async def distributer(update:Update,context:ContextTypes.DEFAULT_TYPE, db:Sessio
     game.finishers.append(user.user_id)
     return ConversationHandler.END
 
-  elif status in range(2,6):
+  elif status in range(1,6):
     question = game.games.get(str(status),False)
-    puzzle = game.redirect_puzzle.get(str(status),False)
     await update.message.reply_text(f"{question}")
+    if status == 1:
+      return State.DISTRIBUTER
+    puzzle = game.redirect_puzzle.get(str(status),False)
     await update.message.reply_text(f"{puzzle}")
 
   return State.DISTRIBUTER
