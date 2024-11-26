@@ -15,8 +15,7 @@ class Game:
     \n\n3. A prize will be awarded to the winning team."
 
     self.backcodes = [
-      'Gmae1-66667', 'Gmae1-24302', 'Gmae1-95105', 'Gmae1-14861', 'Gmae1-20023', 'Gmae1-24639', 'Gmae1-64329', 'Gmae1-97264', 'Gmae1-53779', 'Gmae1-31410', 'Gmae1-21296', 'Gmae1-59229', 'Gmae1-19321', 'Gmae1-87680', 'Gmae1-40734', 'Gmae2-24110', 'Gmae2-22397', 'Gmae2-70203', 'Gmae2-80963', 'Gmae2-27513', 'Gmae2-26916', 'Gmae2-45581', 'Gmae2-31112', 'Gmae2-77180', 'Gmae2-16595', 'Gmae2-38531', 'Gmae2-88332', 'Gmae2-93294', 'Gmae2-45437', 'Gmae2-49712', 'Gmae3-49401', 'Gmae3-47535', 'Gmae3-45440', 'Gmae3-75665', 'Gmae3-96001', 'Gmae3-37036', 'Gmae3-43736', 'Gmae3-55824', 'Gmae3-99931', 'Gmae3-91393', 'Gmae3-32149', 'Gmae3-26423', 'Gmae3-35961', 'Gmae3-76818', 'Gmae3-38366', 'Gmae4-25458', 'Gmae4-43170', 'Gmae4-29365', 'Gmae4-59811', 'Gmae4-77320', 'Gmae4-90362', 'Gmae4-13117', 'Gmae4-24430', 'Gmae4-77741', 'Gmae4-47596', 'Gmae4-12874', 'Gmae4-50316', 'Gmae4-89935', 'Gmae4-62984', 'Gmae4-91011', 'Gmae5-58625', 'Gmae5-51392', 'Gmae5-51327', 'Gmae5-94759', 'Gmae5-30261', 'Gmae5-37474', 'Gmae5-45088', 'Gmae5-18726', 'Gmae5-19019', 'Gmae5-81460', 'Gmae5-87888', 'Gmae5-49528', 'Gmae5-51428', 'Gmae5-99043', 'Gmae5-27172','Game-win-72143', 'Game-win-78876', 'Game-win-19532', 'Game-win-11428', 'Game-win-11856', 'Game-win-12984', 'Game-win-63389', 'Game-win-83575', 'Game-win-38267', 'Game-win-65520', 'Game-win-84566', 'Game-win-75994', 'Game-win-23140', 'Game-win-93673', 'Game-win-93718'
-      ]
+       'Game1-11047QU', 'Game1-12650KW', 'Game1-15516DI', 'Game1-21757RK', 'Game1-25269SN', 'Game1-26717WJ', 'Game1-28434LM', 'Game1-41887FK', 'Game1-43412AQ', 'Game1-44710EC', 'Game1-60557OC', 'Game1-67987LB', 'Game1-70153WW', 'Game1-81669EO', 'Game1-85445HY', 'Game1-88694DY', 'Game1-89221RZ', 'Game1-89366IQ', 'Game1-93057TF', 'Game1-96694WM', 'Game2-13169PM', 'Game2-14817ZQ', 'Game2-15111VA', 'Game2-17907AM', 'Game2-20733LA', 'Game2-22414BJ', 'Game2-31761GR', 'Game2-39109YV', 'Game2-41635TE', 'Game2-43954TX', 'Game2-44598IP', 'Game2-45608ZW', 'Game2-52516IY', 'Game2-55787UV', 'Game2-62164SX', 'Game2-74015HS', 'Game2-78722KG', 'Game2-79241SH', 'Game2-84640ON', 'Game2-87724QS', 'Game3-13865UW', 'Game3-24310YY', 'Game3-27034WU', 'Game3-29031UF', 'Game3-34986AZ', 'Game3-41123WE', 'Game3-51520GS', 'Game3-52340HZ', 'Game3-56762DL', 'Game3-63819JH', 'Game3-66879BW', 'Game3-72541BH', 'Game3-76137XK', 'Game3-79966RC', 'Game3-82492NT', 'Game3-83168UY', 'Game3-86696WC', 'Game3-89554PM', 'Game3-93819NF', 'Game3-95629HE', 'Game4-13321LX', 'Game4-15695VU', 'Game4-18464GG', 'Game4-24919RM', 'Game4-28988OO', 'Game4-34057HM', 'Game4-41211FW', 'Game4-43389KN', 'Game4-50440FU', 'Game4-56105QF', 'Game4-63114HL', 'Game4-68636GJ', 'Game4-76740CD', 'Game4-80316UF', 'Game4-83872EN', 'Game4-85440NG', 'Game4-86019GM', 'Game4-87173SO', 'Game4-88029MF', 'Game4-91204DN', 'Game5-12115OG', 'Game5-14477NX', 'Game5-15865KK', 'Game5-17936AZ', 'Game5-24593ZC', 'Game5-25346BW', 'Game5-28234JB', 'Game5-31053EJ', 'Game5-47477VC', 'Game5-50016DA', 'Game5-50986BR', 'Game5-52723DV', 'Game5-64911ZO', 'Game5-66105GN', 'Game5-80593XV', 'Game5-83527YL', 'Game5-86705CS', 'Game5-88241QB', 'Game5-89374EV', 'Game5-97287FC','Game-win-11201KL', 'Game-win-23290RY', 'Game-win-26942IV', 'Game-win-43044DP', 'Game-win-44108DM', 'Game-win-46034JR', 'Game-win-47200GV', 'Game-win-54969OK', 'Game-win-61752UE', 'Game-win-69198UJ', 'Game-win-69558WS', 'Game-win-71166UQ', 'Game-win-76630YW', 'Game-win-80208XL', 'Game-win-81929JR', 'Game-win-87278OU', 'Game-win-90171JG', 'Game-win-92788SC', 'Game-win-95030PW', 'Game-win-99842DB']
     
     self.codes = list(self.backcodes)
     self.finishers = []
@@ -34,12 +33,13 @@ class Game:
     self.redirect_puzzle = {
 
       "2":"PUZZLE: ስመጣ በአልጋ ነበረ ተስፋዬም የተሰበረ በእምነትሽ በጸበልሽ ሠው ሁኜ ቆምኩኝ ደጅሽ",
-      "3":"PUZZLE: የሚያስቀድሰው ስም ለማስቀድሰው እንደሚል ነው",
-      "4":"PUZZLE: የረገጥከው ቦታ የተቀደሰ ነውና ጫማክን አውልቅ",
-      "5":"PUZZLE: ግድ ነውና ሁሉም ወደ መነሻው ይመለሳል",
+      "3":"PUZZLE:  ኑ ቃሉን እንማር ",
+      "4":"PUZZLE: ወደ ቤቱ ስትሔዱ ፀሀይ እና ዳገት ምክንያት እንዳይሆናቹ፣\n መሀል መንገድ ላይ አለሁኝ ጥላዬን ላጥላላቹ",
+      "5":"PUZZLE: አንደ ወርቅ ከመሬት እወጣለው \nአታምኑም እንጂ ከወርቅ በላይ እጠቅማለሁ",
     }
 
-    self.wrong_msg ="❗❗you entered wrong code❗❗\nplease enter correct code."
+    self.wrong_msg ="❗❗ Invalid Code Entered ❗❗\nPlease ensure all characters are entered correctly.\nIf the issue persists, contact the administrators for assistance."
+
 
 
   def check_code(self, code=""):

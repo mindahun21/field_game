@@ -176,11 +176,7 @@ async def show_result(update: Update, context: ContextTypes.DEFAULT_TYPE, db:Ses
      text=adminMessage,
      parse_mode="HTML"
   )
-  formatted_finishers = "\n".join(str(finisher) for finisher in game.finishers)
-  await context.bot.send_message(
-    admin.user_id,
-    text=f"finishers are:\n{formatted_finishers}"
-  )
+
    
 handler = ConversationHandler(
     entry_points=[CommandHandler("start",start_game)],
