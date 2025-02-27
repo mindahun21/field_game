@@ -96,19 +96,22 @@ async def distributer(update:Update,context:ContextTypes.DEFAULT_TYPE, db:Sessio
   
 
   if status == 200:
+    game.finishers.append(user.user_id)
     await context.bot.send_message(
       update.effective_user.id,
-      f"your team finished the game \nplease wait to find out your rank",
+      f"congradulations👏 your team finished the game\n your team rank is: {len(game.finishers)}",
       parse_mode="HTML"
     )
-    game.finishers.append(user.user_id)
     return ConversationHandler.END
 
   elif status in range(1,6):
     question = game.games.get(str(status),False)
     await update.message.reply_text(f"{question}")
+
     if status == 1:
       return State.DISTRIBUTER
+    elif status == 5:
+      await send_game5(context=context,user_id=update.effective_user.id)
     puzzle = game.redirect_puzzle.get(str(status),False)
     await update.message.reply_text(f"{puzzle}")
 
@@ -146,36 +149,36 @@ async def reset_game(update: Update, context: ContextTypes.DEFAULT_TYPE, db:Sess
      text="the game is successfully reseted"
   )
 
-@access_db
-async def show_result(update: Update, context: ContextTypes.DEFAULT_TYPE, db:Session =None):
-  role, _ = await db_utils.get_role(update.effective_user.id,db=db)
-  if role == Role.USER:
-    await update.message.reply_text(
-       "you can't use this command b/c you are a user"
-    )
-    return
-  elif role == Role.NONE:
-    await update.message.reply_text(
-      "you are not registered use /start to register"
-    )
-    return
+# @access_db
+# async def show_result(update: Update, context: ContextTypes.DEFAULT_TYPE, db:Session =None):
+#   role, _ = await db_utils.get_role(update.effective_user.id,db=db)
+#   if role == Role.USER:
+#     await update.message.reply_text(
+#        "you can't use this command b/c you are a user"
+#     )
+#     return
+#   elif role == Role.NONE:
+#     await update.message.reply_text(
+#       "you are not registered use /start to register"
+#     )
+#     return
   
 
-  users = await db_utils.get_entries(User,db=db,role=Role.USER)
-  adminMessage = F"The Winners are:\n<pre>"
+#   users = await db_utils.get_entries(User,db=db,role=Role.USER)
+#   adminMessage = F"The Winners are:\n<pre>"
   
-  for index, user_id in enumerate(game.finishers):
-    matched_user = next((user for user in users if user.user_id == user_id), None)
-    if matched_user:
-        adminMessage += f"{index+1}. @{matched_user.username or 'no username'}\n"
+#   for index, user_id in enumerate(game.finishers):
+#     matched_user = next((user for user in users if user.user_id == user_id), None)
+#     if matched_user:
+#         adminMessage += f"{index+1}. @{matched_user.username or 'no username'}\n"
 
-  adminMessage += "</pre>"
-  admin = await db_utils.get_entry(User,db=db,role=Role.ADMIN)
-  await context.bot.send_message(
-     admin.user_id,
-     text=adminMessage,
-     parse_mode="HTML"
-  )
+#   adminMessage += "</pre>"
+#   admin = await db_utils.get_entry(User,db=db,role=Role.ADMIN)
+#   await context.bot.send_message(
+#      admin.user_id,
+#      text=adminMessage,
+#      parse_mode="HTML"
+#   )
 
    
 handler = ConversationHandler(
@@ -190,9 +193,9 @@ handler = ConversationHandler(
 )
 
 
-handler1  = CommandHandler("result",show_result)
+# handler1  = CommandHandler("result",show_result)
 handler2 = CommandHandler("reset",reset_game)
-register_handler(handler1)
+# register_handler(handler1)
 register_handler(handler2)
 register_handler(handler)
 

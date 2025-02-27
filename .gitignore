@@ -1,3 +1,4 @@
 /bfenv
 *.log
 *__pycache__/
+.env

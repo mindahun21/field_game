@@ -9,10 +9,10 @@ async def send_photo(context,user_id,rank) -> None:
         await context.bot.send_photo(chat_id=user_id, photo=photo, caption="Here's your photo from my PC!")
 
 
-async def send_game3(context,user_id):
+async def send_game5(context,user_id):
     media = []
-    for i in range(1,9):
-        with open(f"anime/photo_{i}_2024-10-21_09-54-40.jpg", 'rb') as photo:
+    for i in range(1,8):
+        with open(f"images/photo_{i}.jpg", 'rb') as photo:
             media.append(InputMediaPhoto(photo))
     
     await context.bot.send_media_group(chat_id=user_id,media=media)
