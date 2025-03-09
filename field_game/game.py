@@ -76,7 +76,7 @@ async def start_game(update:Update,context:ContextTypes.DEFAULT_TYPE,db:Session=
           f"{game.ruls}"
       )
       await update.message.reply_text(
-        "Enter the first game code to start. If you don't have it, please reach out to the game admins."
+        "የመጀመሪያው ጨዋታ አጫዋቾቻችሁ የሚሰጧችሁን (cross word puzzle) በትክክል መጨረስ ነው"
       )
 
     return State.DISTRIBUTER
@@ -104,13 +104,11 @@ async def distributer(update:Update,context:ContextTypes.DEFAULT_TYPE, db:Sessio
     )
     return ConversationHandler.END
 
-  elif status in range(1,6):
+  elif status in range(2,6):
     question = game.games.get(str(status),False)
     await update.message.reply_text(f"{question}")
 
-    if status == 1:
-      return State.DISTRIBUTER
-    elif status == 5:
+    if status == 5:
       await send_game5(context=context,user_id=update.effective_user.id)
     puzzle = game.redirect_puzzle.get(str(status),False)
     await update.message.reply_text(f"{puzzle}")

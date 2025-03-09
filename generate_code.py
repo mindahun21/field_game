@@ -8,13 +8,11 @@ def generate(games_count, code_count):
         randnums = random.sample(range(10000, 99999), code_count)  # Ensure unique random numbers within each game
 
         for randnum in randnums:
-            rand_chars = ''.join(random.choices(string.ascii_uppercase, k=2))
-            code = f"Game{i}-{randnum}{rand_chars}"
+            code = f"Game{i}-{randnum}"
             
             # Ensure the code is unique by checking if it's already in the set
             while code in codes:
-                rand_chars = ''.join(random.choices(string.ascii_uppercase, k=2))  # Regenerate random characters
-                code = f"Game{i}-{randnum}{rand_chars}"
+                code = f"Game{i}-{randnum}"
 
             codes.add(code)  # Add the unique code to the set
     
@@ -25,21 +23,18 @@ def generatewin(code_count):
     randnums = random.sample(range(10000, 99999), code_count)  # Ensure unique random numbers within each game
 
     for randnum in randnums:
-        rand_chars = ''.join(random.choices(string.ascii_uppercase, k=2))
-        code = f"Game-win-{randnum}{rand_chars}"
+        code = f"Game-win-{randnum}"
         
         # Ensure the code is unique by checking if it's already in the set
         while code in codes:
-            rand_chars = ''.join(random.choices(string.ascii_uppercase, k=2))  # Regenerate random characters
-            code = f"Game-win-{randnum}{rand_chars}"
+            code = f"Game-win-{randnum}"
 
         codes.add(code) 
 
     return sorted(list(codes))
 
 
-print(generatewin( 20))
-  
+print(generatewin(25))  
 
 
 
