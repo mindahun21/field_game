@@ -37,7 +37,7 @@ async def start_game(update:Update,context:ContextTypes.DEFAULT_TYPE,db:Session=
           f"{game.ruls}"
       )
       await update.message.reply_text(
-        "Enter the first game code to start. If you don't have it, please reach out to the game admins."
+        "የመጀመሪያው ጨዋታ አጫዋቾቻችሁ የሚሰጧችሁን (cross word puzzle) በትክክል መጨረስ ነው"
       )
       
     elif role == Role.ADMIN:
