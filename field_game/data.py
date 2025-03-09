@@ -32,10 +32,10 @@ class Game:
 
     self.redirect_puzzle = {
 
-      "2":"PUZZLE: ስመጣ በአልጋ ነበረ ተስፋዬም የተሰበረ በእምነትሽ በጸበልሽ ሠው ሁኜ ቆምኩኝ ደጅሽ",
-      "3":"PUZZLE:  ኑ ቃሉን እንማር ",
-      "4":"PUZZLE: ወደ ቤቱ ስትሔዱ ፀሀይ እና ዳገት ምክንያት እንዳይሆናቹ፣\n መሀል መንገድ ላይ አለሁኝ ጥላዬን ላጥላላቹ",
-      "5":"PUZZLE: አንደ ወርቅ ከመሬት እወጣለው \nአታምኑም እንጂ ከወርቅ በላይ እጠቅማለሁ",
+      "2":"PUZZLE: \nስመጣ በአልጋ ነበረ ተስፋዬም የተሰበረ በእምነትሽ በጸበልሽ ሠው ሁኜ ቆምኩኝ ደጅሽ",
+      "3":"PUZZLE: \n ኑ ቃሉን እንማር ",
+      "4":"PUZZLE: \nአንደ ወርቅ ከመሬት እወጣለው \nአታምኑም እንጂ ከወርቅ በላይ እጠቅማለሁ",
+      "5":"PUZZLE: \nወንዙን ተሻግሬ ወጥቼ ዳገቱን  \nእራቴን አየኋት ተጠግታ አጥሩን",
     }
 
     self.wrong_msg ="❗❗ Invalid Code Entered ❗❗\nPlease ensure all characters are entered correctly.\nIf the issue persists, contact the administrators for assistance."

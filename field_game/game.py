@@ -84,7 +84,7 @@ async def start_game(update:Update,context:ContextTypes.DEFAULT_TYPE,db:Session=
 
 @access_db
 async def distributer(update:Update,context:ContextTypes.DEFAULT_TYPE, db:Session=None):
-  if update.message is not None:  # how this can be none
+  if update.message is not None:  
       code = update.message.text
 
   status = game.check_code(code)
