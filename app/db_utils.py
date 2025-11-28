@@ -1,4 +1,3 @@
-
 from typing import Tuple, TypeVar, Union, Literal,List
 from sqlalchemy import select
 
@@ -84,6 +83,13 @@ async def get_entries(obj,db=None,**filters)-> Union[List[T],Literal[False]]:
     
     return False
 
+async def is_group_name_taken(group_name: str, db=None) -> bool:
+    if db is None:
+        raise ValueError("you didn't pass database connection to the function")
+    
+    user = await get_entry(User, db=db, group_name=group_name)
+    return user is not False
+
 async def get_role(user_id:int,db=None) -> Tuple[Role,Union[User, None]]:
     if db is None:
         raise ValueError("you didn't pass database connection to the function")
@@ -94,5 +100,40 @@ async def get_role(user_id:int,db=None) -> Tuple[Role,Union[User, None]]:
         return (Role.USER,user)
     elif user and user.role == Role.ADMIN:
         return (Role.ADMIN,user)
+    elif user and user.role == Role.GAME_ADMIN:
+        return (Role.GAME_ADMIN,user)
     
     return (Role.NONE,None)
+
+async def transfer_group_ownership(current_group_name: str, new_owner_username: str, db=None) -> str:
+    if db is None:
+        return "Error: Database connection not provided."
+
+    # 1. Find the old owner by current_group_name
+    old_owner = await get_entry(User, db=db, group_name=current_group_name)
+    if not old_owner:
+        return f"Error: No group found with name '{current_group_name}'."
+    
+    # 2. Find the new owner by new_owner_username
+    new_owner = await get_entry(User, db=db, username=new_owner_username)
+    if not new_owner:
+        return f"Error: New owner user @{new_owner_username} not found."
+    
+    # 3. Check if new_owner already has a group
+    if new_owner.group_name:
+        return f"Error: New owner @{new_owner_username} already owns group '{new_owner.group_name}'. Cannot transfer."
+    
+    # 4. Prevent transferring to self (if it makes sense)
+    if old_owner.user_id == new_owner.user_id:
+        return f"Error: User @{new_owner_username} is already the owner of group '{current_group_name}'."
+
+    # 5. Perform the transfer
+    # Clear group_name for old owner
+    old_owner.group_name = None
+    await add_obj(old_owner, db=db) # add_obj commits changes
+
+    # Assign group_name to new owner
+    new_owner.group_name = current_group_name
+    await add_obj(new_owner, db=db) # add_obj commits changes
+
+    return f"Success: Group '{current_group_name}' ownership transferred from @{old_owner.username} to @{new_owner.username}."

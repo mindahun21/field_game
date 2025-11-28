@@ -7,6 +7,10 @@ class Game:
         "username": "Mindahun21",
     }
     ]
+    self.game_admins = [
+      {"username": "game_admin1"},
+    ]
+      # {"username": "Mindatest"},
     self.ruls = "Game Rules:\n\
     🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑\n\n\
     ❗❗❗❗ ATTENTION ❗❗❗❗\n\n\
@@ -18,7 +22,6 @@ class Game:
       'Game1-10030', 'Game1-11683', 'Game1-16477', 'Game1-17075', 'Game1-18357', 'Game1-22058', 'Game1-23799', 'Game1-23995', 'Game1-24456', 'Game1-27099', 'Game1-29451', 'Game1-30301', 'Game1-32568', 'Game1-38222', 'Game1-39263', 'Game1-39614', 'Game1-44880', 'Game1-57109', 'Game1-59152', 'Game1-79088', 'Game1-79550', 'Game1-84569', 'Game1-86793', 'Game1-97442', 'Game1-99452', 'Game2-15155', 'Game2-20912', 'Game2-22727', 'Game2-23778', 'Game2-25351', 'Game2-26779', 'Game2-26855', 'Game2-36450', 'Game2-39978', 'Game2-41250', 'Game2-42560', 'Game2-58755', 'Game2-59443', 'Game2-59787', 'Game2-60868', 'Game2-60936', 'Game2-67404', 'Game2-69430', 'Game2-69453', 'Game2-70798', 'Game2-74048', 'Game2-78260', 'Game2-82225', 'Game2-86187', 'Game2-98272', 'Game3-13283', 'Game3-13736', 'Game3-14425', 'Game3-15578', 'Game3-16900', 'Game3-22947', 'Game3-27925', 'Game3-38197', 'Game3-44514', 'Game3-57352', 'Game3-58908', 'Game3-66918', 'Game3-68030', 'Game3-72665', 'Game3-72941', 'Game3-73418', 'Game3-73803', 'Game3-76099', 'Game3-76414', 'Game3-77218', 'Game3-85396', 'Game3-86368', 'Game3-88718', 'Game3-91118', 'Game3-93337', 'Game4-13783', 'Game4-21830', 'Game4-25613', 'Game4-27588', 'Game4-30966', 'Game4-32391', 'Game4-33941', 'Game4-35328', 'Game4-41304', 'Game4-48537', 'Game4-48912', 'Game4-51604', 'Game4-51873', 'Game4-58864', 'Game4-60439', 'Game4-60937', 'Game4-67326', 'Game4-69857', 'Game4-70985', 'Game4-72011', 'Game4-80014', 'Game4-82840', 'Game4-83990', 'Game4-95357', 'Game4-95570', 'Game5-10363', 'Game5-10615', 'Game5-22094', 'Game5-38850', 'Game5-47281', 'Game5-50869', 'Game5-51293', 'Game5-58471', 'Game5-59915', 'Game5-61044', 'Game5-61924', 'Game5-64512', 'Game5-65684', 'Game5-67365', 'Game5-69492', 'Game5-70476', 'Game5-71165', 'Game5-75429', 'Game5-78973', 'Game5-80570', 'Game5-83394', 'Game5-84916', 'Game5-85428', 'Game5-88899', 'Game5-94101','Game-win-10051', 'Game-win-13573', 'Game-win-16465', 'Game-win-20101', 'Game-win-24442', 'Game-win-24765', 'Game-win-31674', 'Game-win-36122', 'Game-win-40823', 'Game-win-44954', 'Game-win-45369', 'Game-win-46009', 'Game-win-49314', 'Game-win-51068', 'Game-win-55003', 'Game-win-61046', 'Game-win-61105', 'Game-win-61166', 'Game-win-64660', 'Game-win-67668', 'Game-win-68409', 'Game-win-70173', 'Game-win-72190', 'Game-win-80835', 'Game-win-90704']
     
     self.codes = list(self.backcodes)
-    self.finishers = []
     self.games ={
       "1": "GAME 1:\nየመጀመሪያው ጨዋታ አጫዋቾቻችሁ የሚሰጧችሁን (cross word puzzle) በትክክል መጨረስ ነው ",
       "2":"GAME 2:\nትውልዳቸው  ኢትዮጲያውያን  የሆኑ ቅዱሳን  ከ ወንድም ከ ሰት ሊሆን ይችላል  15 የሚያህል መዘርዘር  \n\nመልሳችሁን ፅፋችሁ ለአጫዋቾቻችሁ ስጡ።",
@@ -61,7 +64,6 @@ class Game:
 
   def reset(self):
     self.codes = list(self.backcodes)
-    self.finishers.clear()
 
 
 

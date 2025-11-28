@@ -7,7 +7,7 @@ from sqlalchemy.orm import sessionmaker,Session
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.exc import SQLAlchemyError
 
-engine = create_engine('sqlite:///app/quiz.db')
+engine = create_engine('sqlite:///app/game.db')
 
 localSession = sessionmaker(bind=engine,autoflush=False, autocommit=False, expire_on_commit=False)
 
