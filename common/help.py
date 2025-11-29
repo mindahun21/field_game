@@ -1,3 +1,8 @@
+"""
+This module defines the help command handler for the bot,
+providing users with a list of available commands based on their role.
+"""
+
 from app.db import access_db
 from app.db_utils import get_role
 from app.models import Role
@@ -10,7 +15,10 @@ from telegram.ext import ContextTypes, CommandHandler
 
 @access_db
 async def help_handler(update:Update, context=ContextTypes.DEFAULT_TYPE, db=None):
-
+    """
+    Handles the /help command, sending a list of available commands
+    to the user based on their role (USER, GAME_ADMIN, ADMIN, or NONE).
+    """
     role,_ =await get_role(user_id=update.effective_user.id, db=db)
 
     msg = None
@@ -38,6 +46,6 @@ async def help_handler(update:Update, context=ContextTypes.DEFAULT_TYPE, db=None
     if msg:
         await update.message.reply_text(msg)
 
+# Command handler for the /help command.
 handler = CommandHandler("help",help_handler)
 register_handler(handler)
-

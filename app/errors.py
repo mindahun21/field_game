@@ -41,4 +41,3 @@ async def error_handler(update:Update,context: ContextTypes.DEFAULT_TYPE):
                 f"An error occured in the bot. Please check the logs for more info.\n\nError: <pre>{context.error}</pre>",
                 parse_mode="HTML"
             )
-

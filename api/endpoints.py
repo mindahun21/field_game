@@ -1,17 +1,29 @@
+"""
+This module defines the API endpoints for the Field Game application,
+including operations for updating points, setting points, and transferring
+group ownership.
+"""
+
 from fastapi import APIRouter, Depends, HTTPException, Header
 from sqlalchemy.orm import Session
 from . import models
 from .dependencies import get_db
-from app.models import User, Role # Import Role
-from app import db_utils # Import db_utils
+from app.models import User, Role
+from app import db_utils
 
 router = APIRouter()
 
 @router.post("/update_point")
 def update_point(point_update: models.PointUpdate, db: Session = Depends(get_db)):
+    """
+    Updates a user's points by adding to their current score.
+    Requires 'group_name' and 'points' in the request body.
+    """
     user = db.query(User).filter(User.group_name == point_update.group_name).first()
     if not user:
         raise HTTPException(status_code=404, detail="Group not found")
+    if user.point is None:
+        user.point = 0
     user.point += point_update.points
     db.commit()
     db.refresh(user)
@@ -19,9 +31,15 @@ def update_point(point_update: models.PointUpdate, db: Session = Depends(get_db)
 
 @router.post("/set_point")
 def set_point(point_update: models.PointUpdate, db: Session = Depends(get_db)):
+    """
+    Sets a user's points to a specific score, overwriting the current value.
+    Requires 'group_name' and 'points' in the request body.
+    """
     user = db.query(User).filter(User.group_name == point_update.group_name).first()
     if not user:
         raise HTTPException(status_code=404, detail="Group not found")
+    if user.point is None:
+        user.point = 0
     user.point = point_update.points
     db.commit()
     db.refresh(user)
@@ -29,15 +47,35 @@ def set_point(point_update: models.PointUpdate, db: Session = Depends(get_db)):
 
 @router.get("/")
 def read_root():
+    """
+    Root endpoint for the API.
+    Returns a welcome message.
+    """
     return {"message": "Welcome to the Field Game API"}
 
 @router.post("/transfer_group_ownership")
 async def transfer_group_ownership_endpoint(
     request: models.TransferGroupOwnershipRequest,
     db: Session = Depends(get_db),
-    x_user_role: str = Header(None) # Expect user role in a header
+    x_user_role: str = Header(None) 
 ):
-    if x_user_role != Role.ADMIN.name: # Check if the role is ADMIN (case-sensitive)
+    """
+    Transfers ownership of a game group from its current owner to a new user.
+    Requires ADMIN role for authorization.
+
+    Args:
+        request: TransferGroupOwnershipRequest object containing current_group_name and new_owner_username.
+        db: The SQLAlchemy database session.
+        x_user_role: The role of the user making the request (from X-User-Role header).
+
+    Raises:
+        HTTPException 403: If the user role is not ADMIN.
+        HTTPException 400: If the transfer operation fails.
+
+    Returns:
+        A dictionary with a success message.
+    """
+    if x_user_role != Role.ADMIN.name:
         raise HTTPException(status_code=403, detail="Only ADMINs can transfer group ownership.")
     
     result = await db_utils.transfer_group_ownership(
@@ -49,3 +87,10 @@ async def transfer_group_ownership_endpoint(
         raise HTTPException(status_code=400, detail=result)
     return {"message": result}
 
+@router.get("/search_groups", response_model=models.GroupSearchResponse)
+def search_groups(q: str, db: Session = Depends(get_db)):
+    """
+    Searches for groups by name.
+    """
+    users = db.query(User).filter(User.group_name.ilike(f"%{q}%")).all()
+    return {"users": users}

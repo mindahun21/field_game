@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 authtoken: 367a2dePlMU4ml1A5R1WQtD23Os_7P2bdyvF5Gp7JmAUyzHiD
 tunnels:
   react_app:
