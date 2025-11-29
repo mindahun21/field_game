@@ -21,8 +21,7 @@ class Game:
     ]
     # List of game admin usernames who can manage points.
     self.game_admins = [
-      {"username": "game_admin1"},
-      # {"username": "Mindatest"},
+      {"username": "Mindatest"},
     ]
     # Game rules text.
     self.ruls = """Game Rules:
