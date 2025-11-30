@@ -242,12 +242,15 @@ async def distributer(update:Update,context:ContextTypes.DEFAULT_TYPE, db:Sessio
     )
     return ConversationHandler.END
 
-  elif status in range(2,6):
-    question = game.games.get(str(status),False)
-    await update.message.reply_text(f"{question}")
-
-    puzzle = game.redirect_puzzle.get(str(status),False)
-    await update.message.reply_text(f"{puzzle}")
+  #TODO: send game5 using game52 codes
+  elif status in range(2,7):
+    
+    if status != 5:
+      question = game.games.get(str(status),False)
+      await update.message.reply_text(f"{question}")
+    if status != 6:
+      puzzle = game.redirect_puzzle.get(str(status),False)
+      await update.message.reply_text(f"{puzzle}")
 
   return State.DISTRIBUTER
 
@@ -300,7 +303,8 @@ async def show_result(update: Update, context: ContextTypes.DEFAULT_TYPE, db:Ses
     )
     return
   
-  finished_users = db.query(User).filter(User.finished_at.isnot(None)).order_by(User.finished_at).all()
+  #TODO: give priority for points
+  finished_users = db.query(User).filter(User.finished_at.isnot(None)).order_by(User.point.desc(), User.finished_at.asc()).all()
   admin_message = "The Winners are:\n<pre>"
   
   for index, user in enumerate(finished_users):

@@ -34,7 +34,7 @@ def generatewin(code_count):
     return sorted(list(codes))
 
 
-print(generatewin(25))  
+print(generate(5,50))  
 
 
 
