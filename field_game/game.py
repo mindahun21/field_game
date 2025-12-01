@@ -110,7 +110,6 @@ async def start_game(update:Update,context:ContextTypes.DEFAULT_TYPE,db:Session=
     Initiates a new game conversation or provides status for existing users.
     Sets role-based commands for the user.
     """
-    print("start_game called")
     user_id = update.effective_user.id
     user = await db_utils.get_entry(User, db=db, user_id=user_id)
 
@@ -311,7 +310,6 @@ async def show_result(update: Update, context: ContextTypes.DEFAULT_TYPE, db:Ses
   This is an ADMIN-only command.
   """
   logger.info(f"User {update.effective_user.id} invoked /result command.")
-  print("showing result")
   role, _ = await db_utils.get_role(update.effective_user.id,db=db)
   if role != Role.ADMIN:
     await update.message.reply_text(
@@ -688,3 +686,4 @@ register_handler(handler9)
 register_handler(handler10)
 register_handler(handler11)
 register_handler(handler12)
+register_handler(handler)
