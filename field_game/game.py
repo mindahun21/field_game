@@ -47,7 +47,7 @@ class State(Enum):
     UPDATE_POINT_FORCE=3
 
 game = Game()
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("app")
 
 
 ROLE_COMMANDS = {
@@ -110,6 +110,7 @@ async def start_game(update:Update,context:ContextTypes.DEFAULT_TYPE,db:Session=
     Initiates a new game conversation or provides status for existing users.
     Sets role-based commands for the user.
     """
+    print("start_game called")
     user_id = update.effective_user.id
     user = await db_utils.get_entry(User, db=db, user_id=user_id)
 
@@ -131,13 +132,14 @@ async def start_game(update:Update,context:ContextTypes.DEFAULT_TYPE,db:Session=
             await set_role_based_commands(user_id, user.role, context)
             return ConversationHandler.END
         elif user.group_name:
-            await update.message.reply_text(
+            await context.bot.send_message(
+                user_id,
                 f"You are already in the game with group '{user.group_name}'. Continue playing!"
             )
             await set_role_based_commands(user_id, user.role, context)
             return State.DISTRIBUTER
         else:
-            await update.message.reply_text("Welcome back! Please enter your unique group name to continue.")
+            await context.bot.send_message(user_id, "Welcome back! Please enter your unique group name to continue.")
             await set_role_based_commands(user_id, user.role, context)
             return State.GET_GROUP_NAME
           
@@ -154,7 +156,7 @@ async def start_game(update:Update,context:ContextTypes.DEFAULT_TYPE,db:Session=
             parse_mode="HTML"
         )
         await set_role_based_commands(user_id, user.role, context)
-        return
+        return ConversationHandler.END
     else:
         new_role = Role.USER
         for game_admin in game.game_admins:
@@ -308,6 +310,8 @@ async def show_result(update: Update, context: ContextTypes.DEFAULT_TYPE, db:Ses
   Generates and sends a ranked list of finishers to all finishers and admins.
   This is an ADMIN-only command.
   """
+  logger.info(f"User {update.effective_user.id} invoked /result command.")
+  print("showing result")
   role, _ = await db_utils.get_role(update.effective_user.id,db=db)
   if role != Role.ADMIN:
     await update.message.reply_text(
@@ -644,6 +648,8 @@ async def list_game_admins(update: Update, context: ContextTypes.DEFAULT_TYPE, d
     await update.message.reply_text(
         "Current Game Admins:\n" + "\n".join("@" + username for username in admin_usernames)
     )
+
+
 
 handler = ConversationHandler(
     entry_points=[CommandHandler("start",start_game)],
