@@ -9,6 +9,91 @@ class Game:
   Manages the core data and logic for the Field Game.
   This includes game rules, codes, puzzles, and lists of administrators.
   """
+  # Static variable to track awarded points per group and game number.
+  # Key: (group_name: str, game_number: int)
+  # Value: The points awarded for that specific game to that group (int).
+  awarded_game_points = {}
+  game_max_points = {
+    "1": 2,
+    "2": 15,
+    "3": 7,
+    "4": 8,
+    "5": 5,
+  }
+  # List of game admin usernames who can manage points.
+  """
+    @eyo_ab_s
+    @nobody8nobody
+    @rekikjoni
+    @Sam3212
+    @Semaria12718
+    @Dagi_so
+    @soli_22r
+    @meed_ss
+    @es_melon
+    @Zelda1612
+    @ema_hose7
+    @capd32
+    @nolawie12
+    @ForthOfJly
+    @Lilith_son
+    @lum53i
+    @Yaredoab
+    @Nu_bell21
+    @Blol1_9
+    @dww2003
+    @Reduna_1
+    @medanial
+    @Book_quotes_girl
+    @Merhawiit
+    @Simsol
+    @da_27_29
+    @Aklilemariam_21
+    @uhc2chu
+    @hohte667
+    @hpy2b
+    @Helu_3
+    @Theophorus
+    @newa_y_g
+    @Al_iklil
+    @yarbezzz
+    @Deogratias21
+    @Falcon7fury
+    @umnaerani
+    @Eldaa17
+    @lij13
+    @Yenyoki7
+    @paintedsky1
+    @DNNB122
+    @KMYMWD
+  """
+  game_admins = [
+    # {"username": "Mindatest"},
+  ]
+
+
+  @staticmethod
+  def has_awarded_points(group_name: str, game_number: int) -> bool:
+    """
+    Checks if points have already been awarded for a specific game to a specific group.
+    """
+    return (group_name, game_number) in Game.awarded_game_points
+
+  @staticmethod
+  def add_awarded_points(group_name: str, game_number: int, points: int):
+    """
+    Marks that points have been awarded for a specific game to a specific group,
+    storing the amount of points awarded.
+    """
+    Game.awarded_game_points[(group_name, game_number)] = points
+
+  @staticmethod
+  def get_awarded_points(group_name: str, game_number: int) -> int:
+    """
+    Retrieves the points awarded for a specific game to a specific group.
+    """
+    return Game.awarded_game_points.get((group_name, game_number), 0)
+
   def __init__(self) -> None:
     """
     Initializes the Game with predefined rules, codes, puzzles, and admin lists.
@@ -19,10 +104,7 @@ class Game:
         "username": "Mindahun21",
     }
     ]
-    # List of game admin usernames who can manage points.
-    self.game_admins = [
-      {"username": "Mindatest"},
-    ]
+
     # Game rules text.
     self.ruls = """Game Rules:
     🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑🛑
@@ -38,8 +120,8 @@ class Game:
     3. A prize will be awarded to the winning team."""
 
     # Original list of game codes.
-    self.backcodes = [
-      'Game1-10030', 'Game1-11683', 'Game1-16477', 'Game1-17075', 'Game1-18357', 'Game1-22058', 'Game1-23799', 'Game1-23995', 'Game1-24456', 'Game1-27099', 'Game1-29451', 'Game1-30301', 'Game1-32568', 'Game1-38222', 'Game1-39263', 'Game1-39614', 'Game1-44880', 'Game1-57109', 'Game1-59152', 'Game1-79088', 'Game1-79550', 'Game1-84569', 'Game1-86793', 'Game1-97442', 'Game1-99452', 'Game2-15155', 'Game2-20912', 'Game2-22727', 'Game2-23778', 'Game2-25351', 'Game2-26779', 'Game2-26855', 'Game2-36450', 'Game2-39978', 'Game2-41250', 'Game2-42560', 'Game2-58755', 'Game2-59443', 'Game2-59787', 'Game2-60868', 'Game2-60936', 'Game2-67404', 'Game2-69430', 'Game2-69453', 'Game2-70798', 'Game2-74048', 'Game2-78260', 'Game2-82225', 'Game2-86187', 'Game2-98272', 'Game3-13283', 'Game3-13736', 'Game3-14425', 'Game3-15578', 'Game3-16900', 'Game3-22947', 'Game3-27925', 'Game3-38197', 'Game3-44514', 'Game3-57352', 'Game3-58908', 'Game3-66918', 'Game3-68030', 'Game3-72665', 'Game3-72941', 'Game3-73418', 'Game3-73803', 'Game3-76099', 'Game3-76414', 'Game3-77218', 'Game3-85396', 'Game3-86368', 'Game3-88718', 'Game3-91118', 'Game3-93337', 'Game4-13783', 'Game4-21830', 'Game4-25613', 'Game4-27588', 'Game4-30966', 'Game4-32391', 'Game4-33941', 'Game4-35328', 'Game4-41304', 'Game4-48537', 'Game4-48912', 'Game4-51604', 'Game4-51873', 'Game4-58864', 'Game4-60439', 'Game4-60937', 'Game4-67326', 'Game4-69857', 'Game4-70985', 'Game4-72011', 'Game4-80014', 'Game4-82840', 'Game4-83990', 'Game4-95357', 'Game4-95570', 'Game5-10363', 'Game5-10615', 'Game5-22094', 'Game5-38850', 'Game5-47281', 'Game5-50869', 'Game5-51293', 'Game5-58471', 'Game5-59915', 'Game5-61044', 'Game5-61924', 'Game5-64512', 'Game5-65684', 'Game5-67365', 'Game5-69492', 'Game5-70476', 'Game5-71165', 'Game5-75429', 'Game5-78973', 'Game5-80570', 'Game5-83394', 'Game5-84916', 'Game5-85428', 'Game5-88899', 'Game5-94101','Game-win-10051', 'Game-win-13573', 'Game-win-16465', 'Game-win-20101', 'Game-win-24442', 'Game-win-24765', 'Game-win-31674', 'Game-win-36122', 'Game-win-40823', 'Game-win-44954', 'Game-win-45369', 'Game-win-46009', 'Game-win-49314', 'Game-win-51068', 'Game-win-55003', 'Game-win-61046', 'Game-win-61105', 'Game-win-61166', 'Game-win-64660', 'Game-win-67668', 'Game-win-68409', 'Game-win-70173', 'Game-win-72190', 'Game-win-80835', 'Game-win-90704']
+    self.backcodes = ['Game1-10617', 'Game1-13533', 'Game1-13731', 'Game1-15057', 'Game1-16679', 'Game1-16975', 'Game1-18954', 'Game1-19221', 'Game1-22084', 'Game1-22459', 'Game1-22515', 'Game1-24453', 'Game1-24920', 'Game1-25790', 'Game1-28599', 'Game1-32686', 'Game1-35315', 'Game1-39482', 'Game1-41535', 'Game1-55197', 'Game1-56547', 'Game1-57218', 'Game1-58557', 'Game1-62078', 'Game1-65777', 'Game1-69312', 'Game1-70322', 'Game1-71970', 'Game1-73852', 'Game1-74692', 'Game1-75039', 'Game1-75560', 'Game1-76294', 'Game1-76543', 'Game1-76591', 'Game1-76721', 'Game1-76873', 'Game1-77394', 'Game1-78235', 'Game1-80726', 'Game1-82018', 'Game1-84287', 'Game1-86136', 'Game1-88657', 'Game1-88967', 'Game1-90686', 'Game1-92117', 'Game1-93420', 'Game1-97263', 'Game1-99038', 'Game2-13135', 'Game2-13335', 'Game2-13708', 'Game2-15777', 'Game2-15838', 'Game2-19536', 'Game2-20646', 'Game2-21519', 'Game2-22517', 'Game2-22971', 'Game2-23250', 'Game2-25280', 'Game2-26589', 'Game2-26832', 'Game2-32067', 'Game2-39549', 'Game2-39715', 'Game2-42907', 'Game2-42992', 'Game2-43491', 'Game2-45097', 'Game2-47533', 'Game2-48134', 'Game2-51923', 'Game2-53914', 'Game2-55223', 'Game2-56618', 'Game2-57100', 'Game2-57325', 'Game2-66376', 'Game2-69364', 'Game2-70288', 'Game2-70776', 'Game2-71800', 'Game2-74805', 'Game2-80080', 'Game2-80483', 'Game2-81246', 'Game2-82887', 'Game2-84006', 'Game2-84377', 'Game2-84849', 'Game2-88052', 'Game2-88839', 'Game2-90920', 'Game2-91542', 'Game2-92060', 'Game2-93580', 'Game2-95570', 'Game2-99994', 'Game3-10893', 'Game3-13862', 'Game3-14019', 'Game3-14235', 'Game3-15708', 'Game3-16343', 'Game3-16717', 'Game3-17465', 'Game3-18414', 'Game3-24217', 'Game3-24467', 'Game3-24979', 'Game3-26424', 'Game3-29115', 'Game3-34941', 'Game3-36815', 'Game3-38787', 'Game3-41836', 'Game3-43465', 'Game3-44752', 'Game3-44822', 'Game3-47557', 'Game3-48633', 'Game3-50928', 'Game3-51208', 'Game3-51641', 'Game3-51716', 'Game3-53004', 'Game3-57556', 'Game3-58966', 'Game3-63514', 'Game3-63747', 'Game3-66476', 'Game3-66775', 'Game3-68643', 'Game3-70110', 'Game3-75134', 'Game3-75473', 'Game3-76165', 'Game3-79277', 'Game3-80256', 'Game3-80601', 'Game3-81460', 'Game3-81780', 'Game3-84261', 'Game3-85263', 'Game3-87028', 'Game3-90788', 'Game3-95290', 'Game3-97507', 'Game4-11643', 'Game4-13846', 'Game4-16349', 'Game4-17287', 'Game4-17874', 'Game4-20222', 'Game4-22061', 'Game4-23204', 'Game4-25566', 'Game4-27052', 'Game4-28307', 'Game4-28594', 'Game4-29538', 'Game4-36122', 'Game4-39616', 'Game4-40260', 'Game4-41478', 'Game4-41676', 'Game4-43642', 'Game4-46075', 'Game4-47548', 'Game4-48998', 'Game4-50214', 'Game4-57960', 'Game4-58214', 'Game4-60501', 'Game4-60721', 'Game4-62069', 'Game4-62473', 'Game4-64496', 'Game4-65615', 'Game4-67543', 'Game4-67904', 'Game4-68808', 'Game4-71881', 'Game4-74707', 'Game4-76244', 'Game4-79539', 'Game4-80555', 'Game4-83472', 'Game4-85054', 'Game4-86420', 'Game4-89472', 'Game4-89806', 'Game4-93054', 'Game4-93306', 'Game4-94121', 'Game4-95040', 'Game4-97246', 'Game4-98574', 'Game5-12354', 'Game5-14050', 'Game5-14582', 'Game5-18772', 'Game5-19987', 'Game5-20714', 'Game5-21139', 'Game5-22062', 'Game5-23251', 'Game5-26049', 'Game5-27688', 'Game5-28532', 'Game5-30576', 'Game5-32319', 'Game5-36210', 'Game5-36438', 'Game5-38194', 'Game5-39406', 'Game5-39536', 'Game5-40837', 'Game5-42247', 'Game5-45054', 'Game5-45395', 'Game5-45915', 'Game5-46353', 'Game5-46359', 'Game5-46682', 'Game5-47157', 'Game5-49209', 'Game5-49714', 'Game5-51915', 'Game5-54086', 'Game5-55582', 'Game5-56456', 'Game5-58228', 'Game5-60710', 'Game5-62961', 'Game5-63409', 'Game5-69085', 'Game5-77630', 'Game5-78165', 'Game5-80851', 'Game5-81875', 'Game5-83825', 'Game5-84812', 'Game5-86519', 'Game5-92805', 'Game5-95914', 'Game5-97461', 'Game5-99780', 'Game6-11054', 'Game6-14364', 'Game6-18476', 'Game6-18848', 'Game6-22108', 'Game6-22283', 'Game6-22636', 'Game6-23776', 'Game6-24969', 'Game6-25633', 'Game6-25805', 'Game6-26269', 'Game6-30864', 'Game6-35391', 'Game6-37040', 'Game6-38587', 'Game6-39730', 'Game6-41360', 'Game6-44914', 'Game6-45821', 'Game6-46629', 'Game6-50263', 'Game6-60279', 'Game6-62582', 'Game6-67506', 'Game6-69379', 'Game6-69959', 'Game6-72879', 'Game6-74168', 'Game6-77195', 'Game6-78324', 'Game6-78631', 'Game6-79408', 'Game6-80032', 'Game6-80107', 'Game6-80367', 'Game6-81590', 'Game6-82107', 'Game6-85667', 'Game6-85684', 'Game6-86613', 'Game6-86827', 'Game6-87244', 'Game6-88877', 'Game6-93328', 'Game6-93563', 'Game6-95213', 'Game6-95241', 'Game6-95259', 'Game6-97836','Game-win-10178', 'Game-win-10259', 'Game-win-12482', 'Game-win-16141', 'Game-win-19453', 'Game-win-20646', 'Game-win-22443', 'Game-win-22535', 'Game-win-25418', 'Game-win-25495', 'Game-win-25822', 'Game-win-26430', 'Game-win-26986', 'Game-win-28405', 'Game-win-28789', 'Game-win-29504', 'Game-win-32937', 'Game-win-34398', 'Game-win-37521', 'Game-win-37615', 'Game-win-38009', 'Game-win-39825', 'Game-win-44803', 'Game-win-46512', 'Game-win-48633', 'Game-win-54595', 'Game-win-54776', 'Game-win-59954', 'Game-win-60114', 'Game-win-61420', 'Game-win-61742', 'Game-win-62039', 'Game-win-62919', 'Game-win-65081', 'Game-win-65324', 'Game-win-65759', 'Game-win-71218', 'Game-win-75328', 'Game-win-76553', 'Game-win-77559', 'Game-win-78335', 'Game-win-81557', 'Game-win-85572', 'Game-win-88610', 'Game-win-89659', 'Game-win-93390', 'Game-win-95989', 'Game-win-96457', 'Game-win-97860', 'Game-win-98299']
+    
     # Current list of active game codes.
     self.codes = list(self.backcodes)
     self.games ={
@@ -57,9 +139,7 @@ class Game:
       "4":"PUZZLE: \nለመጀመሪያ ጊዜ ብዕርን ከ ብራና ያገናኘው ሄኖክ ነው።",
       "5":"PUZZLE: \nየአይሁድ አለቃ የሚሆን ኒቆዲሞስ የሚባል ሰው በሌሊት እየመጣ ይማር ነበር።",
     }
-
-
-
+    
     # Message displayed when an invalid code is entered.
     self.wrong_msg ="❗❗ Invalid Code Entered ❗❗\nPlease ensure all characters are entered correctly.\nIf the issue persists, contact the administrators for assistance."
 
@@ -125,3 +205,193 @@ class Game:
   #   "5":"GAME 5: \nጨዋታው እንዴት እየሄደ ነው? \nመልሳቹ መልካም እንደሆነ ተስፋ አለን።\nየመጨረሻው ጨዋታ የሚሆነው ከታች ያሉትን ፎቶዎች በመፅሐፍ ቅዱስ አይታ የሚሰጠውን ትርጉም ፅፎ ለአጫዋቻችሁ መስጠት እና በትክክል ማብራሪያ መስጠት (ማብራሪያው በቃል መስጠት ይቻላል )\n",
 
   # }
+  
+  
+"""
+
+
+
+Game1-10617         Game1-13533         Game1-13731         Game1-15057         
+
+Game1-16679         Game1-16975         Game1-18954         Game1-19221         
+
+Game1-22084         Game1-22459         Game1-22515         Game1-24453         
+
+Game1-24920         Game1-25790         Game1-28599         Game1-32686         
+
+Game1-35315         Game1-39482         Game1-41535         Game1-55197         
+
+Game1-56547         Game1-57218         Game1-58557         Game1-62078         
+
+Game1-65777         Game1-69312         Game1-70322         Game1-71970         
+
+Game1-73852         Game1-74692         Game1-75039         Game1-75560         
+
+Game1-76294         Game1-76543         Game1-76591         Game1-76721         
+
+Game1-76873         Game1-77394         Game1-78235         Game1-80726         
+
+Game1-82018         Game1-84287         Game1-86136         Game1-88657         
+
+Game1-88967         Game1-90686         Game1-92117         Game1-93420         
+
+Game1-97263         Game1-99038         Game2-13135         Game2-13335         
+
+Game2-13708         Game2-15777         Game2-15838         Game2-19536         
+
+Game2-20646         Game2-21519         Game2-22517         Game2-22971         
+
+Game2-23250         Game2-25280         Game2-26589         Game2-26832         
+
+Game2-32067         Game2-39549         Game2-39715         Game2-42907         
+
+Game2-42992         Game2-43491         Game2-45097         Game2-47533         
+
+Game2-48134         Game2-51923         Game2-53914         Game2-55223         
+
+Game2-56618         Game2-57100         Game2-57325         Game2-66376         
+
+Game2-69364         Game2-70288         Game2-70776         Game2-71800         
+
+Game2-74805         Game2-80080         Game2-80483         Game2-81246         
+
+Game2-82887         Game2-84006         Game2-84377         Game2-84849         
+
+Game2-88052         Game2-88839         Game2-90920         Game2-91542         
+
+Game2-92060         Game2-93580         Game2-95570         Game2-99994         
+
+Game3-10893         Game3-13862         Game3-14019         Game3-14235         
+
+Game3-15708         Game3-16343         Game3-16717         Game3-17465         
+
+Game3-18414         Game3-24217         Game3-24467         Game3-24979         
+
+Game3-26424         Game3-29115         Game3-34941         Game3-36815         
+
+Game3-38787         Game3-41836         Game3-43465         Game3-44752         
+
+Game3-44822         Game3-47557         Game3-48633         Game3-50928         
+
+Game3-51208         Game3-51641         Game3-51716         Game3-53004         
+
+Game3-57556         Game3-58966         Game3-63514         Game3-63747         
+
+Game3-66476         Game3-66775         Game3-68643         Game3-70110         
+
+Game3-75134         Game3-75473         Game3-76165         Game3-79277         
+
+Game3-80256         Game3-80601         Game3-81460         Game3-81780         
+
+Game3-84261         Game3-85263         Game3-87028         Game3-90788         
+
+Game3-95290         Game3-97507         Game4-11643         Game4-13846         
+
+Game4-16349         Game4-17287         Game4-17874         Game4-20222         
+
+Game4-22061         Game4-23204         Game4-25566         Game4-27052         
+
+Game4-28307         Game4-28594         Game4-29538         Game4-36122         
+
+Game4-39616         Game4-40260         Game4-41478         Game4-41676         
+
+Game4-43642         Game4-46075         Game4-47548         Game4-48998         
+
+Game4-50214         Game4-57960         Game4-58214         Game4-60501         
+
+Game4-60721         Game4-62069         Game4-62473         Game4-64496         
+
+Game4-65615         Game4-67543         Game4-67904         Game4-68808         
+
+Game4-71881         Game4-74707         Game4-76244         Game4-79539         
+
+Game4-80555         Game4-83472         Game4-85054         Game4-86420         
+
+Game4-89472         Game4-89806         Game4-93054         Game4-93306         
+
+Game4-94121         Game4-95040         Game4-97246         Game4-98574         
+
+Game5-12354         Game5-14050         Game5-14582         Game5-18772         
+
+Game5-19987         Game5-20714         Game5-21139         Game5-22062         
+
+Game5-23251         Game5-26049         Game5-27688         Game5-28532         
+
+Game5-30576         Game5-32319         Game5-36210         Game5-36438         
+
+Game5-38194         Game5-39406         Game5-39536         Game5-40837         
+
+Game5-42247         Game5-45054         Game5-45395         Game5-45915         
+
+Game5-46353         Game5-46359         Game5-46682         Game5-47157         
+
+Game5-49209         Game5-49714         Game5-51915         Game5-54086         
+
+Game5-55582         Game5-56456         Game5-58228         Game5-60710         
+
+Game5-62961         Game5-63409         Game5-69085         Game5-77630         
+
+Game5-78165         Game5-80851         Game5-81875         Game5-83825         
+
+Game5-84812         Game5-86519         Game5-92805         Game5-95914         
+
+Game5-97461         Game5-99780         Game6-11054         Game6-14364         
+
+Game6-18476         Game6-18848         Game6-22108         Game6-22283         
+
+Game6-22636         Game6-23776         Game6-24969         Game6-25633         
+
+Game6-25805         Game6-26269         Game6-30864         Game6-35391         
+
+Game6-37040         Game6-38587         Game6-39730         Game6-41360         
+
+Game6-44914         Game6-45821         Game6-46629         Game6-50263         
+
+Game6-60279         Game6-62582         Game6-67506         Game6-69379         
+
+Game6-69959         Game6-72879         Game6-74168         Game6-77195         
+
+Game6-78324         Game6-78631         Game6-79408         Game6-80032         
+
+Game6-80107         Game6-80367         Game6-81590         Game6-82107         
+
+Game6-85667         Game6-85684         Game6-86613         Game6-86827         
+
+Game6-87244         Game6-88877         Game6-93328         Game6-93563         
+
+Game6-95213         Game6-95241         Game6-95259         Game6-97836            
+
+Game-win-10178            Game-win-10259            Game-win-12482           
+
+Game-win-16141            Game-win-19453            Game-win-20646            
+
+Game-win-22443           Game-win-22535         Game-win-25418            
+
+Game-win-25495            Game-win-25822           Game-win-26430         
+
+Game-win-26986            Game-win-28405            Game-win-28789           
+
+Game-win-29504         Game-win-32937            Game-win-34398            
+
+Game-win-37521           Game-win-37615            Game-win-38009            
+
+Game-win-39825            Game-win-44803           Game-win-46512         
+
+Game-win-48633            Game-win-54595            Game-win-54776           
+
+Game-win-59954         Game-win-60114            Game-win-61420            
+
+Game-win-61742           Game-win-62039         Game-win-62919            
+
+Game-win-65081            Game-win-65324           Game-win-65759            
+
+Game-win-71218            Game-win-75328            Game-win-76553           
+
+Game-win-77559         Game-win-78335            Game-win-81557            
+
+Game-win-85572           Game-win-88610         Game-win-89659            
+
+Game-win-93390            Game-win-95989           Game-win-96457         
+
+Game-win-97860            Game-win-98299
+"""

@@ -44,7 +44,8 @@ class State(Enum):
     DISTRIBUTER=0
     FIRST_GAME=1
     GET_GROUP_NAME=2
-    
+    UPDATE_POINT_FORCE=3
+
 game = Game()
 logger = logging.getLogger(__name__)
 
@@ -71,6 +72,13 @@ ROLE_COMMANDS = {
         BotCommand("result", "Get ranked list of finishers"),
         BotCommand("reset", "Reset the game (DANGER)"),
         BotCommand("transfer_group", "Transfer group ownership"),
+        BotCommand("all_users_status", "Show all users' status"),
+        BotCommand("all_finishers_status", "Show all finishers' status"),
+        BotCommand("update_point_force", "Force update group points for a game"),
+        BotCommand("current_awarded_points", "Check current awarded points for a group and game"),
+        BotCommand("current_awarded_points_all", "Check current awarded points for all groups and games"),
+        BotCommand("current_awarded_points_grouped", "Check current awarded points grouped by groups"),
+        
     ],
 }
 
@@ -106,7 +114,7 @@ async def start_game(update:Update,context:ContextTypes.DEFAULT_TYPE,db:Session=
         if user.role == Role.ADMIN:
             await context.bot.send_message(
                 user_id,
-                f"<pre>hello, {update.effective_user.username}:\nyou are a Super Admin. You have access to all commands: /reset, /result, /update_point.</pre>",
+                "Admin check complete. You are already registered.",
                 parse_mode="HTML"
             )
             await set_role_based_commands(user_id, user.role, context)
@@ -114,7 +122,7 @@ async def start_game(update:Update,context:ContextTypes.DEFAULT_TYPE,db:Session=
         elif user.role == Role.GAME_ADMIN:
             await context.bot.send_message(
                 user_id,
-                f"<pre>hello, {update.effective_user.username}:\nyou are a Game Admin. You can use /update_point to manage game points.</pre>",
+                "Game Admin check complete. You are already registered.",
                 parse_mode="HTML"
             )
             await set_role_based_commands(user_id, user.role, context)
@@ -282,6 +290,7 @@ async def reset_game(update: Update, context: ContextTypes.DEFAULT_TYPE, db:Sess
   await db_utils.add_obj(user,db=db)
     
   game.reset() # Reset game data in memory
+  game.add_awarded_points = {}
 
   await context.bot.send_message(
      user_id,
@@ -337,7 +346,7 @@ async def update_point_command(update: Update, context: ContextTypes.DEFAULT_TYP
   role, _ = await db_utils.get_role(user_id, db=db)
   logger.info(f"User {user_id} with role {role} invoked /update_point command.")
 
-  if role == Role.ADMIN or role == Role.GAME_ADMIN:
+  if role == Role.ADMIN:
       role_str = role.name 
       mini_app_base_url = config["MINI_APP_BASE_URL"]
       mini_app_url = f"{mini_app_base_url}/?role={role_str}"
@@ -381,7 +390,258 @@ async def transfer_group_command(update: Update, context: ContextTypes.DEFAULT_T
         await update.message.reply_text(
             "You are not authorized to use this command."
         )
-   
+        
+@access_db
+async def all_users_status(update: Update, context: ContextTypes.DEFAULT_TYPE, db: Session = None):
+    """
+    ADMIN command to list all users with their group names and points.
+    """
+    user_id = update.effective_user.id
+    role, _ = await db_utils.get_role(user_id, db=db)
+
+    if role != Role.ADMIN:
+        await update.message.reply_text(
+            "You are not authorized to use this command."
+        )
+        return
+
+    users = await db_utils.get_entries(User, db=db)
+    users = sorted(users, key=lambda u: u.point or 0, reverse=True)
+    message = "All Users Status:\n<pre>"
+    for i, user in enumerate(users):
+        message += f"No: {i+1}, User: @{user.username or 'no username'}, Role: {user.role.name if user.role else 'no role'}, Group: {user.group_name or 'no group'}, Points: {user.point}\n"
+    message += "</pre>"
+
+    await update.message.reply_text(
+        message,
+        parse_mode="HTML"
+    )
+    
+@access_db
+async def all_finishers_status(update: Update, context: ContextTypes.DEFAULT_TYPE, db: Session = None):
+    """
+    ADMIN command to list all finishers with their group names and points.
+    """
+    user_id = update.effective_user.id
+    role, _ = await db_utils.get_role(user_id, db=db)
+
+    if role != Role.ADMIN:
+        await update.message.reply_text(
+            "You are not authorized to use this command."
+        )
+        return
+
+    finishers = await db_utils.get_entries(User, db=db)
+    finishers = [user for user in finishers if user.finished_at is not None]
+    finishers = sorted(finishers, key=lambda u: u.point or 0, reverse=True)
+    message = "All Finishers Status:\n<pre>"
+    for i, user in enumerate(finishers):
+        message += f"No: {i+1}, User: @{user.username or 'no username'}, Group: {user.group_name or 'no group'}, Points: {user.point}\n"
+    message += "</pre>"
+
+    await update.message.reply_text(
+        message,
+        parse_mode="HTML"
+    )
+    
+@access_db
+async def update_group_point_for_game_even_if_already_awarded(update: Update, context: ContextTypes.DEFAULT_TYPE, db: Session = None):
+    """
+    ADMIN command to forcibly update a group's points for a specific game,
+    even if points have already been awarded for that game.
+    """
+    user_id = update.effective_user.id
+    role, _ = await db_utils.get_role(user_id, db=db)
+
+    if role != Role.ADMIN:
+        await update.message.reply_text(
+            "You are not authorized to use this command."
+        )
+        return
+
+    try:
+        parts = update.message.text.split()
+        if len(parts) != 4:
+            raise ValueError("Incorrect number of arguments.")
+
+        _, group_name, game_number_str, points_str = parts
+        points = int(points_str)
+        game_number = int(game_number_str)
+    except Exception as e:
+        await update.message.reply_text(
+            "Usage: /update_point_force <group_name> <game_number> <points>\n"
+            "Example: /update_point_force TeamA 2 10"
+        )
+        return
+
+    user = await db_utils.get_entry(User, db=db, group_name=group_name)
+    if not user:
+        await update.message.reply_text(
+            f"No group found with name '{group_name}'."
+        )
+        return
+      
+    current_points = game.get_awarded_points(group_name, game_number)
+
+    user.point = (user.point or 0) + points - current_points
+    await db_utils.add_obj(user, db=db)
+
+    # Update the awarded points tracking
+    game.add_awarded_points(group_name, game_number, points)
+    total_points_after_update = user.point
+
+    await update.message.reply_text(
+        f"Successfully updated points for group '{group_name}' by + {points} - {current_points} for game {game_number}. points after update: {total_points_after_update}."
+    )
+
+@access_db
+async def current_awarded_points_status_specific(update: Update, context: ContextTypes.DEFAULT_TYPE, db: Session = None):
+    """
+    Command to check the current awarded points for a specific group and game.
+    """
+    user_id = update.effective_user.id
+    role, _ = await db_utils.get_role(user_id, db=db)
+
+    if role != Role.ADMIN:
+        await update.message.reply_text(
+            "You are not authorized to use this command."
+        )
+        return
+
+    try:
+        parts = update.message.text.split()
+        if len(parts) != 3:
+            raise ValueError("Incorrect number of arguments.")
+
+        _, group_name, game_number_str = parts
+        game_number = int(game_number_str)
+    except Exception as e:
+        await update.message.reply_text(
+            "Usage: /current_awarded_points <group_name> <game_number>\n"
+            "Example: /current_awarded_points TeamA 2"
+        )
+        return
+
+    current_points = game.get_awarded_points(group_name, game_number)
+
+    await update.message.reply_text(
+        f"Current awarded points for group '{group_name}' in game {game_number}: {current_points}."
+    )
+
+async def current_status_of_awarded_points_for_all_groups_and_games_grouped_by_groups(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """
+    Command to check the current awarded points for all groups and games.
+    Response grouped by group
+    """
+    message = "Current Awarded Points for All Groups and Games:\n"
+    grouped_points = {}
+    for (group_name, game_number), points in Game.awarded_game_points.items():
+        if group_name not in grouped_points:
+            grouped_points[group_name] = []
+        grouped_points[group_name].append((game_number, points))
+
+    for group_name, games in grouped_points.items():
+        message += f"Group: {group_name}\n"
+        for game_number, points in games:
+            message += f"  Game: {game_number}, ==>>: {points}\n"
+
+    await update.message.reply_text(
+        message
+    )
+    
+@access_db
+async def add_game_admins(update: Update, context: ContextTypes.DEFAULT_TYPE, db: Session = None):
+    """
+    ADMIN command to add game admins.
+    Usage: /add_game_admin <username1> <username2> ...
+    """
+    user_id = update.effective_user.id
+    role, _ = await db_utils.get_role(user_id, db=db)
+
+    if role != Role.ADMIN:
+        await update.message.reply_text(
+            "You are not authorized to use this command."
+        )
+        return
+
+    try:
+        parts = update.message.text.split()
+        if len(parts) < 2:
+            raise ValueError("No usernames provided.")
+
+        usernames = parts[1:]
+    except Exception as e:
+        await update.message.reply_text(
+            "Usage: /add_game_admin <username1> <username2> ...\n"
+            "Example: /add_game_admin GameAdmin1 GameAdmin2"
+        )
+        return
+
+    for username in usernames:
+        if not any(admin["username"] == username for admin in game.game_admins):
+            game.game_admins.append({"username": username})
+
+    await update.message.reply_text(
+        f"Successfully added game admins: {', '.join(usernames)}."
+    )
+    
+@access_db
+async def remove_game_admins(update: Update, context: ContextTypes.DEFAULT_TYPE, db: Session = None):
+    """
+    ADMIN command to remove game admins.
+    Usage: /remove_game_admin <username1> <username2> ...
+    """
+    user_id = update.effective_user.id
+    role, _ = await db_utils.get_role(user_id, db=db)
+
+    if role != Role.ADMIN:
+        await update.message.reply_text(
+            "You are not authorized to use this command."
+        )
+        return
+
+    try:
+        parts = update.message.text.split()
+        if len(parts) < 2:
+            raise ValueError("No usernames provided.")
+
+        usernames = parts[1:]
+    except Exception as e:
+        await update.message.reply_text(
+            "Usage: /remove_game_admin <username1> <username2> ...\n"
+            "Example: /remove_game_admin GameAdmin1 GameAdmin2"
+        )
+        return
+
+    game.game_admins = [admin for admin in game.game_admins if admin["username"] not in usernames]
+
+    await update.message.reply_text(
+        f"Successfully removed game admins: {', '.join(usernames)}."
+    )
+    
+@access_db
+async def list_game_admins(update: Update, context: ContextTypes.DEFAULT_TYPE, db: Session = None):
+    """
+    ADMIN command to list all current game admins.
+    """
+    user_id = update.effective_user.id
+    role, _ = await db_utils.get_role(user_id, db=db)
+
+    if role != Role.ADMIN:
+        await update.message.reply_text(
+            "You are not authorized to use this command."
+        )
+        return
+
+    if not game.game_admins:
+        await update.message.reply_text("There are currently no game admins.")
+        return
+
+    admin_usernames = [admin["username"] for admin in game.game_admins]
+    await update.message.reply_text(
+        "Current Game Admins:\n" + "\n".join("@" + username for username in admin_usernames)
+    )
+
 handler = ConversationHandler(
     entry_points=[CommandHandler("start",start_game)],
     states={
@@ -399,8 +659,23 @@ handler1  = CommandHandler("result",show_result)
 handler2 = CommandHandler("reset",reset_game)
 handler3 = CommandHandler("update_point", update_point_command)
 handler4 = CommandHandler("transfer_group", transfer_group_command)
+handler5 = CommandHandler("all_users_status", all_users_status)
+handler6 = CommandHandler("all_finishers_status", all_finishers_status)
+handler7 = CommandHandler("update_point_force", update_group_point_for_game_even_if_already_awarded)
+handler8 = CommandHandler("current_awarded_points", current_awarded_points_status_specific)
+handler9 = CommandHandler("current_awarded_points_all", current_status_of_awarded_points_for_all_groups_and_games_grouped_by_groups)
+handler10 = CommandHandler("add_game_admin", add_game_admins)
+handler11 = CommandHandler("remove_game_admin", remove_game_admins)
+handler12 = CommandHandler("list_game_admins", list_game_admins)
 register_handler(handler1)
 register_handler(handler2)
 register_handler(handler3)
 register_handler(handler4)
-register_handler(handler)
+register_handler(handler5)
+register_handler(handler6)
+register_handler(handler7)
+register_handler(handler8)
+register_handler(handler9)
+register_handler(handler10)
+register_handler(handler11)
+register_handler(handler12)

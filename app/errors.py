@@ -1,7 +1,7 @@
 import logging
 from telegram import Update
 from telegram.ext import ContextTypes
-from telegram.error import Forbidden
+from telegram.error import Forbidden, TimedOut
 
 from .db import session_scope
 from .db_utils import get_entries
@@ -16,6 +16,15 @@ async def error_handler(update:Update,context: ContextTypes.DEFAULT_TYPE):
         user_id = update.effective_user.id
     else:
         user_id = None
+
+    if isinstance(context.error, TimedOut):
+        logger.warning("A timeout occurred", exc_info=context.error)
+        if user_id:
+            await context.bot.send_message(
+                user_id,
+                "Your request timed out, likely due to a network issue. Please try your last action again."
+            )
+        return
 
     if isinstance(context.error ,Forbidden):
         if user_id:

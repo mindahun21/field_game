@@ -2,6 +2,14 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import TransferGroupOwnershipForm from './components/TransferGroupOwnershipForm';
 
+const game_max_points = {
+  1: 10,
+  2: 10,
+  3: 10,
+  4: 10,
+  5: 10,
+};
+
 /**
  * Main application component for the admin mini-app.
  * Handles updating user points and navigating to group ownership transfer.
@@ -9,13 +17,14 @@ import TransferGroupOwnershipForm from './components/TransferGroupOwnershipForm'
 function App() {
   const [groupName, setGroupName] = useState('');
   const [points, setPoints] = useState('');
-  const [operation, setOperation] = useState('update');
+  const [gameNumber, setGameNumber] = useState('');
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const [userRole, setUserRole] = useState('');
   const [currentView, setCurrentView] = useState('updatePoints');
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const [isPointsDisabled, setIsPointsDisabled] = useState(true);
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -24,14 +33,11 @@ function App() {
 
     if (role) {
       setUserRole(role);
-      if (role !== 'ADMIN' && operation === 'set') {
-        setOperation('update');
-      }
     }
     if (view) {
-        setCurrentView(view);
+      setCurrentView(view);
     }
-  }, [operation]);
+  }, []);
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -67,36 +73,54 @@ function App() {
     setSearchQuery('');
   };
 
+  const handleGameNumberChange = (e) => {
+    const value = e.target.value;
+    setGameNumber(value);
+
+    if (game_max_points[value]) {
+      setIsPointsDisabled(false);
+    } else {
+      setIsPointsDisabled(true);
+      setPoints('');
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage('');
     setError('');
 
-    if (!groupName || !points) {
+    if (!groupName || !points || !gameNumber) {
       setError('All fields are required.');
       return;
     }
 
-    if (userRole !== 'ADMIN' && operation === 'set') {
-      setError('Only Super Admins can set (overwrite) points.');
-      return;
-    }
-
-    const endpoint = operation === 'update' ? '/api/update_point' : '/api/set_point';
+    const endpoint = '/api/update_point';
     const apiUrl = import.meta.env.VITE_API_BASE_URL;
     const url = `${apiUrl}${endpoint}`;
 
+    const requestBody = {
+      group_name: groupName,
+      points: parseInt(points, 10),
+      game_number: parseInt(gameNumber, 10),
+    };
+
     try {
+      console.log('API Request URL:', url);
+      console.log('API Request Method: POST');
+      console.log('API Request Headers:', {
+        'Content-Type': 'application/json',
+        'X-User-Role': userRole,
+      });
+      console.log('API Request Body:', JSON.stringify(requestBody));
+
       const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'X-User-Role': userRole,
         },
-        body: JSON.stringify({
-          group_name: groupName,
-          points: parseInt(points, 10),
-        }),
+        body: JSON.stringify(requestBody),
       });
 
       const data = await response.json();
@@ -105,9 +129,13 @@ function App() {
         throw new Error(data.detail || 'Something went wrong');
       }
 
-      setMessage(`Success! Group ${data.group_name} now has ${data.point} points.`);
+      setMessage(
+        `Success! Group ${data.group_name} now has ${data.point} points.`
+      );
       setGroupName('');
       setPoints('');
+      setGameNumber('');
+      setIsPointsDisabled(true);
     } catch (err) {
       setError(err.message);
     }
@@ -116,14 +144,24 @@ function App() {
   return (
     <div className="App">
       <h1>Admin Dashboard</h1>
-      {userRole && <p>Your role: <strong>{userRole}</strong></p>}
+      {userRole && (
+        <p>
+          Your role: <strong>{userRole}</strong>
+        </p>
+      )}
 
       {userRole === 'ADMIN' && (
         <div className="admin-navigation">
-          <button onClick={() => setCurrentView('updatePoints')} className={currentView === 'updatePoints' ? 'active' : ''}>
+          <button
+            onClick={() => setCurrentView('updatePoints')}
+            className={currentView === 'updatePoints' ? 'active' : ''}
+          >
             Update Points
           </button>
-          <button onClick={() => setCurrentView('transferOwnership')} className={currentView === 'transferOwnership' ? 'active' : ''}>
+          <button
+            onClick={() => setCurrentView('transferOwnership')}
+            className={currentView === 'transferOwnership' ? 'active' : ''}
+          >
             Transfer Group Ownership
           </button>
         </div>
@@ -153,7 +191,8 @@ function App() {
                   className="search-result-item"
                   onClick={() => handleResultClick(user.group_name)}
                 >
-                  <span>{user.username}</span> (<span>{user.group_name}</span>)
+                  <span className="username">@{user.username}</span>{' '}
+                  <span className="groupname">{user.group_name}</span>
                 </div>
               ))}
             </div>
@@ -172,28 +211,38 @@ function App() {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="points">Points</label>
+              <label htmlFor="gameNumber">Game Number (1-5)</label>
+              <input
+                type="number"
+                id="gameNumber"
+                value={gameNumber}
+                onChange={handleGameNumberChange}
+                min="1"
+                max="5"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label htmlFor="points">Points to Add</label>
               <input
                 type="number"
                 id="points"
                 value={points}
                 onChange={(e) => setPoints(e.target.value)}
                 required
+                disabled={isPointsDisabled}
+                min={0}
+                max={game_max_points[gameNumber] || ''}
               />
-            </div>
-            <div className="form-group">
-              <label htmlFor="operation">Operation</label>
-              <select id="operation" value={operation} onChange={(e) => setOperation(e.target.value)}>
-                <option value="update">Update (Add Points)</option>
-                {userRole === 'ADMIN' && <option value="set">Set (Overwrite Points)</option>}
-              </select>
             </div>
             <button type="submit">Submit</button>
           </form>
         </div>
       )}
 
-      {currentView === 'transferOwnership' && <TransferGroupOwnershipForm userRole={userRole} />}
+      {currentView === 'transferOwnership' && (
+        <TransferGroupOwnershipForm userRole={userRole} />
+      )}
 
       {message && <p className="success-message">{message}</p>}
       {error && <p className="error-message">{error}</p>}

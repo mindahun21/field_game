@@ -10,40 +10,60 @@ from . import models
 from .dependencies import get_db
 from app.models import User, Role
 from app import db_utils
+from field_game.data import Game
 
 router = APIRouter()
+game_instance = Game()
 
 @router.post("/update_point")
 def update_point(point_update: models.PointUpdate, db: Session = Depends(get_db)):
     """
     Updates a user's points by adding to their current score.
-    Requires 'group_name' and 'points' in the request body.
+    Requires 'group_name', 'points', and 'game_number' in the request body.
     """
+    # Validation: Check if points have already been awarded for this game to this group
+    if Game.has_awarded_points(point_update.group_name, point_update.game_number):
+        raise HTTPException(status_code=400, detail=f"Points for Game {point_update.game_number} have already been awarded to {point_update.group_name}.")
+
+    # Validation: Check for negative points
+    if point_update.points < 0:
+        raise HTTPException(status_code=400, detail="Cannot award negative points.")
+
+    # Validation: Check if points exceed the maximum for the game
+    max_points_for_game = game_instance.game_max_points.get(str(point_update.game_number))
+    if max_points_for_game is not None and point_update.points > max_points_for_game:
+        raise HTTPException(status_code=400, detail=f"Points awarded ({point_update.points}) exceed the maximum of {max_points_for_game} for Game {point_update.game_number}.")
+
     user = db.query(User).filter(User.group_name == point_update.group_name).first()
     if not user:
         raise HTTPException(status_code=404, detail="Group not found")
     if user.point is None:
         user.point = 0
+    
     user.point += point_update.points
     db.commit()
     db.refresh(user)
+
+    # Record the point award in the static variable
+    Game.add_awarded_points(point_update.group_name, point_update.game_number, point_update.points)
+    
     return user
 
-@router.post("/set_point")
-def set_point(point_update: models.PointUpdate, db: Session = Depends(get_db)):
-    """
-    Sets a user's points to a specific score, overwriting the current value.
-    Requires 'group_name' and 'points' in the request body.
-    """
-    user = db.query(User).filter(User.group_name == point_update.group_name).first()
-    if not user:
-        raise HTTPException(status_code=404, detail="Group not found")
-    if user.point is None:
-        user.point = 0
-    user.point = point_update.points
-    db.commit()
-    db.refresh(user)
-    return user
+# @router.post("/set_point")
+# def set_point(point_update: models.PointUpdate, db: Session = Depends(get_db)):
+#     """
+#     Sets a user's points to a specific score, overwriting the current value.
+#     Requires 'group_name' and 'points' in the request body.
+#     """
+#     user = db.query(User).filter(User.group_name == point_update.group_name).first()
+#     if not user:
+#         raise HTTPException(status_code=404, detail="Group not found")
+#     if user.point is None:
+#         user.point = 0
+#     user.point = point_update.points
+#     db.commit()
+#     db.refresh(user)
+#     return user
 
 @router.get("/")
 def read_root():
@@ -93,4 +113,5 @@ def search_groups(q: str, db: Session = Depends(get_db)):
     Searches for groups by name.
     """
     users = db.query(User).filter(User.group_name.ilike(f"%{q}%")).all()
+    print("users:", users)
     return {"users": users}

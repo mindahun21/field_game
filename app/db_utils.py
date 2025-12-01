@@ -271,6 +271,8 @@ async def transfer_group_ownership(current_group_name: str, new_owner_username: 
     await add_obj(old_owner, db=db) 
 
     new_owner.group_name = current_group_name
+    if old_owner.point > 0:
+        new_owner.point = old_owner.point
     await add_obj(new_owner, db=db) 
 
     return f"Success: Group '{current_group_name}' ownership transferred from @{old_owner.username} to @{new_owner.username}."

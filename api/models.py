@@ -11,6 +11,7 @@ class PointUpdate(BaseModel):
     """
     group_name: str  # The name of the group whose points are to be updated.
     points: int      # The number of points to add or set.
+    game_number: int # The number of the game for which points are being awarded.
 
 class TransferGroupOwnershipRequest(BaseModel):
     """
