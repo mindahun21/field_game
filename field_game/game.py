@@ -78,6 +78,9 @@ ROLE_COMMANDS = {
         BotCommand("current_awarded_points", "Check current awarded points for a group and game"),
         BotCommand("current_awarded_points_all", "Check current awarded points for all groups and games"),
         BotCommand("current_awarded_points_grouped", "Check current awarded points grouped by groups"),
+        BotCommand("add_game_admin", "Add game admins"),
+        BotCommand("remove_game_admin", "Remove game admins"),
+        BotCommand("list_game_admins", "List all game admins"),
         
     ],
 }
@@ -147,7 +150,7 @@ async def start_game(update:Update,context:ContextTypes.DEFAULT_TYPE,db:Session=
         await db_utils.add_obj(user,db=db)
         await context.bot.send_message(
             update.effective_user.id,
-            f"<pre>hello, {update.effective_user.username}:\nyou are a Super Admin. You have access to all commands: /reset, /result, /update_point.</pre>",
+            f"""<pre>hello, {update.effective_user.username}: you are a Super Admin. You have access to all commands: /reset, /result, /update_point.</pre>""",
             parse_mode="HTML"
         )
         await set_role_based_commands(user_id, user.role, context)
@@ -169,7 +172,7 @@ async def start_game(update:Update,context:ContextTypes.DEFAULT_TYPE,db:Session=
         if new_role == Role.GAME_ADMIN:
             await context.bot.send_message(
                 user_id,
-                f"<pre>hello, {update.effective_user.username}:\nyou are a Game Admin. You can use /update_point to manage game points.</pre>",
+                f"<pre>hello, {update.effective_user.username}: you are a Game Admin. You can use /update_point to manage game points.</pre>",
                 parse_mode="HTML"
             )
             await set_role_based_commands(user_id, user.role, context)
