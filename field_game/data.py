@@ -140,6 +140,8 @@ class Game:
       "5":"PUZZLE: \nየአይሁድ አለቃ የሚሆን ኒቆዲሞስ የሚባል ሰው በሌሊት እየመጣ ይማር ነበር።",
     }
     
+    self.game2 = "CORRECT:\n\nGAME 1.2: \nየ ስምንቱን 8 ጥያቄዎች መልስ ወረቀት ላይ ፅፋችሁ ለአቻዋች ይናገሩ\n\n1 ጾመ ነቢያት ስንት ቀን ነው?\n2 ጌታ የት ነው የተወለደው?\n4 የጌታን መወለድ/መጸነስ ለድንግል ያበሰራት ማነው?\n5 ጌታ ሲወለድ መጀመርያ የመጡት እነማን ናችው?\n6 ጌታ ሲወለድ የነበረው ንጉስ?\n8 ሰብኣ ሰገል ምን ምን አመጡ?"
+    
     # Message displayed when an invalid code is entered.
     self.wrong_msg ="❗❗ Invalid Code Entered ❗❗\nPlease ensure all characters are entered correctly.\nIf the issue persists, contact the administrators for assistance."
 

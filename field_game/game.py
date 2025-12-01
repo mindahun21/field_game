@@ -45,6 +45,7 @@ class State(Enum):
     FIRST_GAME=1
     GET_GROUP_NAME=2
     UPDATE_POINT_FORCE=3
+    GAME22=4
 
 game = Game()
 logger = logging.getLogger("app")
@@ -218,10 +219,10 @@ async def get_group_name(update:Update, context:ContextTypes.DEFAULT_TYPE, db:Se
     await update.message.reply_text(
         f"Thank you, {group_name}! Your group has been registered.\n\n{game.ruls}"
     )
-    await update.message.reply_text(
-      "የመጀመሪያው ጨዋታ ይህንን (MAZE) በትክክል መጨረስ እና ያገኛችሁትን ሐረግ ለአቻዋቾች ማሳየት ነው  \n👇👇👇👇👇"
-    )
-    await send_photo(context, user_id, "images/maze_game1.jpg")
+    # await update.message.reply_text(
+    #   "የመጀመሪያው ጨዋታ ይህንን (MAZE) በትክክል መጨረስ እና ያገኛችሁትን ሐረግ ለአቻዋቾች ማሳየት ነው  \n👇👇👇👇👇"
+    # )
+    # await send_photo(context, user_id, "images/maze_game1.jpg")
     await set_role_based_commands(update.effective_user.id, Role.USER, context)
     return State.DISTRIBUTER
 
@@ -255,17 +256,43 @@ async def distributer(update:Update,context:ContextTypes.DEFAULT_TYPE, db:Sessio
     return ConversationHandler.END
 
   #TODO: send game5 using game52 codes
-  elif status in range(2,7):
+  elif status in range(1,7):
+    if status == 1:
+      await update.message.reply_text(
+        "የመጀመሪያው ጨዋታ ይህንን (MAZE) በትክክል መጨረስ እና ያገኛችሁትን ቃል በትክክል (በ አማርኛ) ወደ bot መላክ  \n👇👇👇👇👇"
+      )
+      await send_photo(context, update.effective_user.id, "images/maze_game1.jpg")
+      return State.GAME22
     
     if status != 5:
       question = game.games.get(str(status),False)
-      await update.message.reply_text(f"{question}")
+      await context.bot.send_message(update.effective_user.id, f"{question}")
     if status != 6:
       puzzle = game.redirect_puzzle.get(str(status),False)
-      await update.message.reply_text(f"{puzzle}")
+      await context.bot.send_message(update.effective_user.id, f"{puzzle}")
 
   return State.DISTRIBUTER
 
+@access_db
+async def game22(update:Update,context:ContextTypes.DEFAULT_TYPE, db:Session=None):
+    """
+    Handles the GAME22 state, where users submit answers for Game 2.2.
+    Validates the answer and provides feedback.
+    """
+    answer = update.message.text.strip()
+    correct_answer = "ሐዋርያት"
+
+    if answer == correct_answer:
+        await context.bot.send_message(
+            update.effective_user.id,
+            game.game2
+        )
+        return State.DISTRIBUTER
+    else:
+        await update.message.reply_text(
+            "Incorrect answer. Please try again. Remember to write the answer in Amharic."
+        )
+        return State.GAME22
 
 @access_db
 async def reset_game(update: Update, context: ContextTypes.DEFAULT_TYPE, db:Session =None):
@@ -654,6 +681,7 @@ handler = ConversationHandler(
     states={
         State.GET_GROUP_NAME: [MessageHandler(filters.TEXT & (~filters.COMMAND), get_group_name)],
         State.DISTRIBUTER:[MessageHandler(filters.TEXT & (~filters.COMMAND),distributer)],
+        State.GAME22:[MessageHandler(filters.TEXT & (~filters.COMMAND),game22)],
     },
     fallbacks=[
         CommandHandler("cancel",cancel_conversation),
