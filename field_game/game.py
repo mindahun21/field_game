@@ -351,7 +351,7 @@ async def update_point_command(update: Update, context: ContextTypes.DEFAULT_TYP
   role, _ = await db_utils.get_role(user_id, db=db)
   logger.info(f"User {user_id} with role {role} invoked /update_point command.")
 
-  if role == Role.ADMIN:
+  if role == Role.ADMIN or role == Role.GAME_ADMIN:
       role_str = role.name 
       mini_app_base_url = config["MINI_APP_BASE_URL"]
       mini_app_url = f"{mini_app_base_url}/?role={role_str}"
