@@ -1,6 +1,6 @@
 /bfenv
 *.log
-*__pycache__/
+*__pycache__/*
 .env
 __pycache__/
 *.pyc

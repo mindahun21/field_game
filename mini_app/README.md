@@ -1,16 +1,33 @@
-# React + Vite
+# Mini-App Documentation
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This directory contains the source code for the admin mini-app, which is a React application built with Vite. The mini-app provides a user interface for administrators and game administrators to manage the Field Game.
 
-Currently, two official plugins are available:
+## Core Functionalities
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The mini-app has the following features:
 
-## React Compiler
+*   **Point Updates:** Admins and game admins can use the mini-app to update the points of any group in the game. The app provides a form where they can enter the group name, the game number, and the number of points to add.
+*   **Group Ownership Transfer:** Super admins can transfer ownership of a group from one user to another. This is useful if the original owner of a group is no longer able to participate in the game.
+*   **Role-Based Access Control:** The mini-app's functionality is restricted based on the user's role. The user's role is passed as a URL parameter, and the app's UI is adjusted accordingly. For example, only super admins can see the "Transfer Group Ownership" button.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## File Breakdown
 
-## Expanding the ESLint configuration
+*   `index.html`: The main HTML file for the mini-app.
+*   `src/main.jsx`: The entry point for the React application.
+*   `src/App.jsx`: The main application component. It handles the routing between the different views of the app and manages the app's state.
+*   `src/components/TransferGroupOwnershipForm.jsx`: A component that provides a form for transferring group ownership.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## How to Run
+
+To run the mini-app in development mode, you can use the following commands:
+
+```bash
+npm install
+npm run dev
+```
+
+To build the mini-app for production, you can use the following command:
+
+```bash
+npm run build
+```

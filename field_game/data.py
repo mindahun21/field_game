@@ -21,52 +21,7 @@ class Game:
     "5": 5,
   }
   # List of game admin usernames who can manage points.
-  """
-    @eyo_ab_s
-    @nobody8nobody
-    @rekikjoni
-    @Sam3212
-    @Semaria12718
-    @Dagi_so
-    @soli_22r
-    @meed_ss
-    @es_melon
-    @Zelda1612
-    @ema_hose7
-    @capd32
-    @nolawie12
-    @ForthOfJly
-    @Lilith_son
-    @lum53i
-    @Yaredoab
-    @Nu_bell21
-    @Blol1_9
-    @dww2003
-    @Reduna_1
-    @medanial
-    @Book_quotes_girl
-    @Merhawiit
-    @Simsol
-    @da_27_29
-    @Aklilemariam_21
-    @uhc2chu
-    @hohte667
-    @hpy2b
-    @Helu_3
-    @Theophorus
-    @newa_y_g
-    @Al_iklil
-    @yarbezzz
-    @Deogratias21
-    @Falcon7fury
-    @umnaerani
-    @Eldaa17
-    @lij13
-    @Yenyoki7
-    @paintedsky1
-    @DNNB122
-    @KMYMWD
-  """
+  
   game_admins = [
     # {"username": "Mindatest"},
   ]
