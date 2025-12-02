@@ -11,7 +11,7 @@ from app.models import User, Role
 
 
 # Database URL for SQLAlchemy. Configured for SQLite.
-DATABASE_URL = "sqlite:///app/game.db" # Corrected from game.db to quiz.db
+DATABASE_URL = "sqlite:///app/game.db" 
 
 engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
