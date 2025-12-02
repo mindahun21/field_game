@@ -1,56 +1,115 @@
-Project Instructions
-====================
+.. Field Game Bot documentation master file, created by
+   sphinx-quickstart on Tue Dec  2 12:45:21 2025.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to Field Game Bot's documentation!
+============================================
+
+This is the documentation for the Field Game Bot, a Telegram bot that facilitates a real-life field game. This document provides a comprehensive overview of the project, its components, and instructions for installation and usage.
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+Project Overview
+----------------
+
+The Field Game Bot is a Telegram-based application designed to manage a field game. It allows users to register as groups, participate in a series of challenges, and compete for points. The bot provides a set of commands for users to interact with the game, and for administrators to manage the game's progress.
+
+Components
+----------
+
+The project is divided into several components, each with a specific responsibility:
+
+*   **api:** A FastAPI application that provides a RESTful API for managing game data. It includes endpoints for updating points, transferring group ownership, and searching for groups.
+*   **app:** This directory contains the core application logic, including database models, utility functions, and handlers for Telegram bot commands.
+*   **common:** This directory contains common command handlers that are not specific to any particular game or feature, such as the `/start` and `/help` commands.
+*   **field_game:** This directory contains the core game logic, including the game flow, data, and utility functions.
+*   **mini_app:** A React-based mini-app that provides a user interface for administrators and game administrators to manage the game.
+
+Functionalities
+---------------
+
+The Field Game Bot offers the following functionalities:
+
+*   **User Registration:** Users can register for the game by providing a unique group name.
+*   **Game Progression:** Users can progress through the game by entering codes that they receive after completing each challenge.
+*   **Point Management:** Administrators and game administrators can update the points of each group using the mini-app.
+*   **Role-Based Access Control:** The bot's commands and the mini-app's features are restricted based on the user's role (USER, GAME_ADMIN, or ADMIN).
+*   **Real-time Results:** Administrators can view the real-time results of the game, including the ranking of each group.
 
 Installation
 ------------
 
-1. Install the project dependencies by running the following command:
+To install and run the Field Game Bot, follow these steps:
 
-   .. code-block:: shell
+1.  **Clone the repository:**
 
-      pip install -r requirements.txt
+    .. code-block:: shell
 
-2. Create a `.env` file in the project directory and add the following line of code, replacing `your bot token` with your actual bot token:
+       git clone https://github.com/mindahun21/field_game.git
+       cd field_game
 
-   .. code-block:: shell
+2.  **Create and activate a virtual environment:**
 
-      echo "API_KEY='your bot token'" > .env
+    It is highly recommended to use a virtual environment to manage project dependencies.
 
-Usage
------
+    .. code-block:: shell
 
-1. Start using the project by running the main script:
+       python3 -m venv venv
+       source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 
-   .. code-block:: shell
+3.  **Install the dependencies:**
 
-      python main.py
+    .. code-block:: shell
 
-2. Follow the on-screen instructions to interact with the application.
+       pip install -r requirements.txt
 
-Additional Customization
-------------------------
+4.  **Set up the environment variables:**
 
-To further customize the project, you can:
+    Create a ``.env`` file in the project's root directory and add the following variables:
 
-- Modify the code in the appropriate files to add or change functionality.
-- Add additional dependencies to the `requirements.txt` file and install them using the command mentioned in the installation section.
-- Implement new features or improvements as needed.
+    .. code-block:: shell
 
-Feel free to explore, experiment, and enhance the project according to your requirements!
+       API_KEY='your_telegram_bot_token'
+       WEBHOOK_URL='your_ngrok_webhook_url'
+       WEBHOOK_SECRET='your_webhook_secret'
+       MINI_APP_BASE_URL='your_mini_app_base_url'
 
-Contributing
-------------
+    **Note on WEBHOOK_URL:** Telegram webhooks require an HTTPS connection. You can use tools like `ngrok` to expose your local FastAPI server (which runs on port 8000 by default) to the internet via a secure HTTPS tunnel.
 
-If you would like to contribute to this project, please follow these steps:
+    To get your `WEBHOOK_URL` and `WEBHOOK_SECRET` using `ngrok`:
 
-1. Fork the repository on GitHub.
-2. Create a new branch with a descriptive name for your feature or bug fix.
-3. Make the necessary changes to the code.
-4. Write tests to ensure the new code is functioning correctly (if applicable).
-5. Commit your changes and push the branch to your forked repository.
-6. Submit a pull request to the original repository, describing the changes you made.
+    a.  Install ngrok (if you haven't already): `snap install ngrok`
+    b.  Run ngrok for port 8000: `ngrok http 8000`
+    c.  ngrok will provide an HTTPS URL (e.g., `https://xxxx-yyyy-zzzz.ngrok-free.app`). Use this as your `WEBHOOK_URL`.
+    d.  Choose a strong, random string for `WEBHOOK_SECRET`.
 
-We appreciate your contributions!
+5.  **Run the application:**
+
+    First, start the FastAPI backend (which will run on port 8000):
+
+    .. code-block:: shell
+
+       uvicorn api.main:app --host 0.0.0.0 --port 8000
+
+    In a separate terminal, start the Telegram bot:
+
+    .. code-block:: shell
+
+       python main.py
+
+Testing
+-------
+
+To run the tests for the Field Game Bot, you can use the following command:
+
+.. code-block:: shell
+
+   pytest
+
+This will discover and run all the tests in the `tests/` directory.
 
 License
 -------

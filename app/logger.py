@@ -1,6 +1,17 @@
+"""
+This module configures the application-wide logging system, setting up
+different loggers for general application messages, SQLAlchemy, and
+directing logs to various files based on severity.
+"""
+
 import logging
 
 def init_logger():
+    """
+    Initializes and configures the application's logging system.
+    Sets up 'app' logger for general messages (WARNING to app.log, INFO to info.log)
+    and 'sqlalchemy' logger for database-related messages (INFO to db.log).
+    """
     logger = logging.getLogger("app")
     logger.setLevel(logging.DEBUG)
 

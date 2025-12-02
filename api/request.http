@@ -1,0 +1,3 @@
+###
+GET https://sarcastic-nonconsultatory-lois.ngrok-free.dev/api/search_groups?q=kebe
+Content-Type: application/json
